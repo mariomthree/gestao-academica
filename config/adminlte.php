@@ -256,6 +256,34 @@ return [
             'url'     => '#',
         ],
         [
+            'text'    => 'Provincias',
+            'icon'    => 'fas fa-fw fa-users',
+            'submenu' => [
+                    [
+                        'text' => 'Todas Provincias',
+                        'url'  => '#'
+                    ],
+                    [
+                        'text'  => 'Adicionar Nova',
+                        'url'  => '#'
+                    ]
+            ],
+        ],
+        [
+            'text'    => 'Distritos',
+            'icon'    => 'fas fa-fw fa-users',
+            'submenu' => [
+                    [
+                        'text' => 'Todas Distritos',
+                        'url'  => '#'
+                    ],
+                    [
+                        'text'  => 'Adicionar Novo',
+                        'url'  => '#'
+                    ]
+            ],
+        ],
+        [
             'text'    => 'Utilizadores',
             'icon'    => 'fas fa-fw fa-users',
             'submenu' => [
