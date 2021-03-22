@@ -226,87 +226,68 @@ return [
 
     'menu' => [
         [
-            'text' => 'search',
+            'text' => 'Pesquisa',
             'search' => true,
-            'topnav' => true,
+            'topnav' => false,
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text'        => 'Inicio',
+            'url'         => '/',
+            'icon'        => 'fas fa-fw fa-tachometer-alt',
+            'classes'     => 'mt-2'
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'Instituições de Ensino',
+            'icon'    => 'fas fa-fw fa-graduation-cap',
             'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
+                    [
+                        'text' => 'Todas Instituições',
+                        'url'  => '#'
                     ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
+                    [
+                        'text'  => 'Adicionar Nova',
+                        'url'  => '#'
+                    ]
             ],
         ],
-        ['header' => 'labels'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'text'    => 'Relatórios',
+            'icon'    => 'fas fa-fw fa-chart-pie',
+            'url'     => '#',
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+            'text'    => 'Utilizadores',
+            'icon'    => 'fas fa-fw fa-users',
+            'submenu' => [
+                    [
+                        'text' => 'Todos Utilizadores',
+                        'url'  => '#'
+                    ],
+                    [
+                        'text'  => 'Adicionar Novo',
+                        'url'  => '#'
+                    ]
+            ],
         ],
         [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text'    => 'Instituição de Ensino',
+            'icon'    => 'fas fa-fw fa-graduation-cap',
+            'url'  => '#'
         ],
+        [
+            'text'    => 'Relatórios',
+            'icon'    => 'fas fa-fw fa-chart-pie',
+            'submenu' => [
+                    [
+                        'text' => 'Todos Relatórios',
+                        'url'  => '#'
+                    ],
+                    [
+                        'text'  => 'Adicionar Novo',
+                        'url'  => '#'
+                    ]
+            ],
+        ]
     ],
 
     /*
