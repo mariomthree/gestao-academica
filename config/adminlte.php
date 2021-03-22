@@ -257,31 +257,13 @@ return [
         ],
         [
             'text'    => 'Provincias',
-            'icon'    => 'fas fa-fw fa-users',
-            'submenu' => [
-                    [
-                        'text' => 'Todas Provincias',
-                        'url'  => '#'
-                    ],
-                    [
-                        'text'  => 'Adicionar Nova',
-                        'url'  => '#'
-                    ]
-            ],
+            'icon'    => 'fa fa-fw fa-list',
+            'url'  => '#'
         ],
         [
             'text'    => 'Distritos',
-            'icon'    => 'fas fa-fw fa-users',
-            'submenu' => [
-                    [
-                        'text' => 'Todas Distritos',
-                        'url'  => '#'
-                    ],
-                    [
-                        'text'  => 'Adicionar Novo',
-                        'url'  => '#'
-                    ]
-            ],
+            'icon'    => 'fa fa-fw fa-list-ul',
+            'url'  => '#'
         ],
         [
             'text'    => 'Utilizadores',
