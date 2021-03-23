@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Province;
 use App\Http\Requests\ProvinceRequest;
+use GuzzleHttp\Handler\Proxy;
 
 class ProvinceController extends Controller
 {
@@ -66,5 +67,8 @@ class ProvinceController extends Controller
      */
     public function destroy($id)
     {
+        $province = Province::findOrFail($id);
+        $province->delete();
+        return redirect('admin/provinces');
     }
 }

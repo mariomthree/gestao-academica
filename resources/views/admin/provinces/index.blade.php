@@ -35,6 +35,11 @@
 									<h3 class="card-title">Nova Provincia</h3>
 								</div>
 								<div class="card-body">
+
+									<div class="success text-center">
+										<strong>Dados actualidados.</strong>
+									</div>
+
 									{!! Form::open(['method'=>'POST','action'=>'App\Http\Controllers\ProvinceController@store', 'id'=>'form']) !!}	
 										{!! Form::label('name','Nome:') !!}
 										<div class="form-group">
@@ -91,6 +96,4 @@
 				</div>
 			</div>
 			<!-- /.row -->
-@stop
-@section('js')
 @stop
