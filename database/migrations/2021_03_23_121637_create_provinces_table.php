@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDistritoTable extends Migration
+class CreateProvincesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateDistritoTable extends Migration
      */
     public function up()
     {
-        Schema::create('distrito', function (Blueprint $table) {
+        Schema::create('provinces', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome');
-            $table->id('provincia_id');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateDistritoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('distrito');
+        Schema::dropIfExists('provinces');
     }
 }

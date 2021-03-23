@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProvinciaTable extends Migration
+class CreateDistrictsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateProvinciaTable extends Migration
      */
     public function up()
     {
-        Schema::create('provincia', function (Blueprint $table) {
+        Schema::create('districts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome');
+            $table->string('name');
+            $table->unsignedBigInteger('province_id');
             $table->timestamps();
+
+            $table->foreign('province_id')->references('id')->on('provinces')
+            ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -27,6 +31,6 @@ class CreateProvinciaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('provincia');
+        Schema::dropIfExists('districts');
     }
 }
