@@ -27,7 +27,7 @@ class ProvinceController extends Controller
      */
     public function store(ProvinceRequest $request)
     {
-        Province::create($request->all());
+        Province::create(['name' => $request->name]);
         return redirect('admin/provinces');
     }
 
@@ -50,9 +50,12 @@ class ProvinceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProvinceRequest $request, $id)
     {
-        return $request->all();
+        $province = Province::findOrFail($id);
+        $province->name = $request->name;
+        $province->save();
+        return redirect('admin/provinces');
     }
 
     /**
@@ -63,6 +66,5 @@ class ProvinceController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 }
