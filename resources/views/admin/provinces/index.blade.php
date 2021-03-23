@@ -36,9 +36,14 @@
 								</div>
 								<div class="card-body">
 									{!! Form::open(['method'=>'POST','action'=>'App\Http\Controllers\ProvinceController@store', 'id'=>'form']) !!}	
+										{!! Form::label('name','Nome:') !!}
 										<div class="form-group">
-											{!! Form::label('name','Nome:') !!}
-											{!! Form::text('name',null,['class'=>'form-control']) !!}
+										{!! Form::text('name', null, [ 'class' => 'form-control ' . ( $errors->has('name') ? ' is-invalid' : '' )]) !!}
+											@if($errors->has('name'))
+												<div class="invalid-feedback">
+													<strong>{{ $errors->first('name') }}</strong>
+												</div>
+											@endif
 										</div>
 										<div class="form-group">
 											{!! Form::submit('Adicionar',['class'=>'btn btn-primary']) !!}

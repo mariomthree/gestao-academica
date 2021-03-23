@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Province;
+use App\Http\Requests\ProvinceRequest;
 
 class ProvinceController extends Controller
 {
@@ -15,17 +16,7 @@ class ProvinceController extends Controller
     public function index()
     {
         $provinces = Province::all();
-        return view('admin.provinces.index')->with('provinces',$provinces);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('admin.provinces.index',['provinces' => $provinces]);
     }
 
     /**
@@ -34,20 +25,10 @@ class ProvinceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProvinceRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        Province::create($request->all());
+        return redirect('admin/provinces');
     }
 
     /**
@@ -58,7 +39,8 @@ class ProvinceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $province = Province::findOrFail($id);
+        return view('admin/provinces/edit', ['province' => $province]);
     }
 
     /**
@@ -70,7 +52,7 @@ class ProvinceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $request->all();
     }
 
     /**
