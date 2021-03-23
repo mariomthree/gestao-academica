@@ -46,7 +46,6 @@ return [
     */
 
     'logo' => '<b>Gestão</b> Academica',
-    #'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -249,21 +248,41 @@ return [
                         'url'  => '#'
                     ]
             ],
+            'permission'  => [
+                'create-ei',
+                'edit-ei',
+                'delete-ei'
+            ]
         ],
         [
             'text'    => 'Relatórios',
             'icon'    => 'fas fa-fw fa-chart-pie',
             'url'     => '#',
+            'permission'  => [
+                'create-ei',
+                'edit-ei',
+                'delete-ei'
+            ]
         ],
         [
             'text'    => 'Provincias',
             'icon'    => 'fa fa-fw fa-list',
-            'url'  => '#'
+            'url'  => '#',
+            'permission'  => [
+                'create-province',
+                'edit-province',
+                'delete-province'
+            ]
         ],
         [
             'text'    => 'Distritos',
             'icon'    => 'fa fa-fw fa-list-ul',
-            'url'  => '#'
+            'url'  => '#',
+            'permission' => [
+                'create-district',
+                'edit-district',
+                'delete-district'
+            ]
         ],
         [
             'text'    => 'Utilizadores',
@@ -278,11 +297,24 @@ return [
                         'url'  => '#'
                     ]
             ],
+            'permission'  => [
+                'create-user',
+                'edit-user',
+                'delete-user'
+            ]
         ],
         [
             'text'    => 'Instituição de Ensino',
             'icon'    => 'fas fa-fw fa-graduation-cap',
-            'url'  => '#'
+            'url'  => '#',
+            'permission'  => [
+                'create-student',
+                'edit-student',
+                'delete-student',
+                'create-teacher',
+                'edit-teacher',
+                'delete-teacher'
+            ]
         ],
         [
             'text'    => 'Relatórios',
@@ -297,6 +329,14 @@ return [
                         'url'  => '#'
                     ]
             ],
+            'permission'  => [
+                'create-student',
+                'edit-student',
+                'delete-student',
+                'create-teacher',
+                'edit-teacher',
+                'delete-teacher'
+            ]
         ]
     ],
 
@@ -313,13 +353,14 @@ return [
     */
 
     'filters' => [
-        JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
+        # JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
+        \App\Laratrust\MenuFilter::class,
     ],
 
     /*
