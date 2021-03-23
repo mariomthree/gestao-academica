@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Middleware\Admin;
+use App\Http\Controllers\ProvinceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,8 @@ Route::prefix('admin')->middleware([Admin::class])->group(function () {
     
     Route::middleware(['role:admin'])->group(function () {
         Route::resources([
-            'users' => UserController::class
+            'users' => UserController::class,
+            'provinces' => ProvinceController::class
         ]);
     });
     

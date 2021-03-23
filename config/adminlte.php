@@ -267,7 +267,7 @@ return [
         [
             'text'    => 'Provincias',
             'icon'    => 'fa fa-fw fa-list',
-            'url'  => '#',
+            'url'     => 'admin/provinces',
             'permission'  => [
                 'create-province',
                 'edit-province',
