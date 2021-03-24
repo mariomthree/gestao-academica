@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    protected $role  = 'role'; //Indica que tabela a conectar
+    protected $fillable = ['name'];
 }
