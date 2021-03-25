@@ -1,15 +1,15 @@
 @extends('adminlte::page')
 
-@section('title', 'Gestão Academica')
+@section('title', 'Medicine')
 
 @section('content_header')
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Actualizar utilizador</h1>
+        <h1 class="m-0 text-dark">Actualizar Utilizadores</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="/">Página inícial</a></li>
+            <li class="breadcrumb-item"><a href="/admin">Inicio</a></li>
             <li class="breadcrumb-item active">Utilizadores</li>
         </ol>
     </div><!-- /.col -->
@@ -40,12 +40,12 @@
 						</div>
 						<ul class="list-group list-group-unbordered mb-3" style="margin-top: 4.2rem;">
 							<li class="list-group-item">
-							<b>Foto do Perfil:</b>
+							<b>Photo of perfil:</b>
 							</li>
 						</ul>
 						<div class="form-group">
 							<div class="custom-file">
-								{!!Form::label('photo_id','Foto:',['class'=>'custom-file-label']) !!}
+								{!!Form::label('photo_id','Photo:',['class'=>'custom-file-label']) !!}
 								{!! Form::file('photo_id',null,['class'=>'form-control custom-file-input']) !!}       
 							</div>
 						</div>
@@ -73,26 +73,11 @@
 									</div>
 								</div>
 								<div class="form-group row">
-									{!! Form::label('email','Email:',['class'=>'col-sm-3 col-form-label']) !!}
+									{!! Form::label('email','E-mail:',['class'=>'col-sm-3 col-form-label']) !!}
 									<div class="col-sm-9">
 										{!! Form::email('email',null,['class'=>'form-control']) !!}
 									</div>
 								</div>
-								@if(Auth::user()->role->name == 'Administrator')
-								<div class="form-group row">
-									{!! Form::label('role_id','Função:',['class'=>'col-sm-3 col-form-label']) !!}
-									<div class="col-sm-9">
-										{!! Form::select('role_id',[''=>'Selecionar']+$roles,null,['class'=>'form-control custom-select']) !!}
-									</div>
-								</div>
-								
-								<div class="form-group row">
-									{!! Form::label('is_active','Estado:',['class'=>'col-sm-3 col-form-label']) !!}
-									<div class="col-sm-9">
-										{!! Form::select('is_active',array(1=>'Activo',0=>'Inactivo'),null,['class'=>'form-control custom-select']) !!}
-									</div>
-								</div>
-								@endif
 								<div class="form-group row">
 									{!! Form::label('password','Palavra-passe:',['class'=>'col-sm-3 col-form-label']) !!}
 									<div class="col-sm-9">
@@ -103,7 +88,7 @@
 									{!! Form::label('description','Descrição:',['class'=>'col-sm-3 col-form-label']) !!}
 									<div class="col-sm-9">
 										{!! Form::textarea('description',null,['class'=>'form-control','rows'=>3]) !!}	
-										<small>Breve descrição do utilizador.</small>
+										<small>Breve descrição sobre o utilizador.</small>
 									</div>
 								</div>
 								<div class="form-group row">
@@ -128,66 +113,3 @@
 <!-- /.row -->
 @stop
 
-@section('js')
-<script src="{{ asset('vendor/jquery-validation/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('vendor/jquery-validation/additional-methods.js') }}"></script>
-<script src="{{ asset('vendor/jquery-validation/localization/messages_pt_PT.min.js') }}"></script>
-
-<script>
-(function($){ 
-	$('#form').validate({
-          rules: {
-            name: {
-              required: true
-            },
-            email :{
-			  required: true,
-			  email: true
-            },
-            telephone: {
-              required: true,
-              maxlength: 9,
-              minlength: 9
-            },
-            is_active: {
-              required: true,
-			},
-			role_id: {
-              required: true,
-            }
-          },
-          messages: {
-            name: {
-              required:  $.validator.messages.required,
-            },
-            email: {
-              required:  $.validator.messages.required,
-              email:  $.validator.messages.email
-            },
-            telephone: {
-              required:  $.validator.messages.required,
-              minlength:  $.validator.messages.minlength,
-              maxlength:  $.validator.messages.maxlength
-            },            
-            is_active: {
-              required:  $.validator.messages.required
-            },            
-            role_id: {
-              required:  $.validator.messages.required
-            }
-          },
-          errorElement: 'span',
-          errorPlacement: function (error, element) {
-            error.addClass('invalid-feedback');
-            element.closest('.col-sm-9').append(error);
-          },
-          highlight: function (element, errorClass, validClass) {
-            $(element).addClass('is-invalid');
-          },
-          unhighlight: function (element, errorClass, validClass) {
-            $(element).removeClass('is-invalid');
-          }
-      });
-})(jQuery);
-</script>
-@stop

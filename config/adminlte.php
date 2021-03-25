@@ -290,11 +290,11 @@ return [
             'submenu' => [
                     [
                         'text' => 'Todos Utilizadores',
-                        'url'  => '#'
+                        'url'  => 'admin/users'
                     ],
                     [
                         'text'  => 'Adicionar Novo',
-                        'url'  => '#'
+                        'url'  => 'admin/users/create'
                     ]
             ],
             'permission'  => [
