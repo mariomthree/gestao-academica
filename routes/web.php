@@ -19,10 +19,22 @@ use App\Http\Controllers\ProvinceController;
 |
 */
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+Route::get('/', function () {
+    return view('welcome');
+});
+
+ Auth::routes();
+=======
+Auth::routes();
+>>>>>>> main
+=======
 
 
 
 Auth::routes();
+>>>>>>> main
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
