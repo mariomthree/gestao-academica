@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Gestão Academica',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Gestão</b> Academica',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'Gestão Academica',
 
     /*
     |--------------------------------------------------------------------------
@@ -67,9 +67,9 @@ return [
     'usermenu_enabled' => true,
     'usermenu_header' => false,
     'usermenu_header_class' => 'bg-primary',
-    'usermenu_image' => false,
-    'usermenu_desc' => false,
-    'usermenu_profile_url' => false,
+    'usermenu_image' => true,
+    'usermenu_desc' => true,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -225,87 +225,119 @@ return [
 
     'menu' => [
         [
-            'text' => 'search',
+            'text' => 'Pesquisa',
             'search' => true,
-            'topnav' => true,
+            'topnav' => false,
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text'        => 'Inicio',
+            'url'         => '/',
+            'icon'        => 'fas fa-fw fa-tachometer-alt',
+            'classes'     => 'mt-2'
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'Instituições de Ensino',
+            'icon'    => 'fas fa-fw fa-graduation-cap',
             'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
+                    [
+                        'text' => 'Todas Instituições',
+                        'url'  => '#'
                     ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
+                    [
+                        'text'  => 'Adicionar Nova',
+                        'url'  => '#'
+                    ]
             ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+            'permission'  => [
+                'create-ei',
+                'edit-ei',
+                'delete-ei'
+            ]
         ],
         [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text'    => 'Relatórios',
+            'icon'    => 'fas fa-fw fa-chart-pie',
+            'url'     => '#',
+            'permission'  => [
+                'create-ei',
+                'edit-ei',
+                'delete-ei'
+            ]
         ],
+        [
+            'text'    => 'Provincias',
+            'icon'    => 'fa fa-fw fa-list',
+            'url'     => 'admin/provinces',
+            'permission'  => [
+                'create-province',
+                'edit-province',
+                'delete-province'
+            ]
+        ],
+        [
+            'text'    => 'Distritos',
+            'icon'    => 'fa fa-fw fa-list-ul',
+            'url'  => '#',
+            'permission' => [
+                'create-district',
+                'edit-district',
+                'delete-district'
+            ]
+        ],
+        [
+            'text'    => 'Utilizadores',
+            'icon'    => 'fas fa-fw fa-users',
+            'submenu' => [
+                    [
+                        'text' => 'Todos Utilizadores',
+                        'url'  => 'admin/users'
+                    ],
+                    [
+                        'text'  => 'Adicionar Novo',
+                        'url'  => 'admin/users/create'
+                    ]
+            ],
+            'permission'  => [
+                'create-user',
+                'edit-user',
+                'delete-user'
+            ]
+        ],
+        [
+            'text'    => 'Instituição de Ensino',
+            'icon'    => 'fas fa-fw fa-graduation-cap',
+            'url'  => '#',
+            'permission'  => [
+                'create-student',
+                'edit-student',
+                'delete-student',
+                'create-teacher',
+                'edit-teacher',
+                'delete-teacher'
+            ]
+        ],
+        [
+            'text'    => 'Relatórios',
+            'icon'    => 'fas fa-fw fa-chart-pie',
+            'submenu' => [
+                    [
+                        'text' => 'Todos Relatórios',
+                        'url'  => '#'
+                    ],
+                    [
+                        'text'  => 'Adicionar Novo',
+                        'url'  => '#'
+                    ]
+            ],
+            'permission'  => [
+                'create-student',
+                'edit-student',
+                'delete-student',
+                'create-teacher',
+                'edit-teacher',
+                'delete-teacher'
+            ]
+        ]
     ],
 
     /*
@@ -321,13 +353,14 @@ return [
     */
 
     'filters' => [
-        JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
+        # JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
+        \App\Laratrust\MenuFilter::class,
     ],
 
     /*
