@@ -19,6 +19,9 @@ use App\Http\Controllers\ProvinceController;
 |
 */
 
+
+
+
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index']);
