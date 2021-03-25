@@ -9,8 +9,13 @@ class Institution extends Model
     
     protected $fillable = ['name','district_id','user_id'];
 
-    /*public function institution(){
-       return $this->belongsTo(institution::class);
-    }*/
+    public function user(){
+       return $this->belongsTo(User::class);
+    }
+
+    public function district(){
+        return $this->belongsTo(District::class);
+     }
+ 
 
 }

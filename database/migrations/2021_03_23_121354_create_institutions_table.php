@@ -13,16 +13,16 @@ class CreateInstitutionTable extends Migration
      */
     public function up()
     {
-        Schema::create('Institution', function (Blueprint $table) {
+        Schema::create('institutions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->id('district_id');
-            $table->id('user_id');
+            $table->unsignedBigInteger('district_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            $table->foreign('district_id')->references('id')->on('Districts')
+            $table->foreign('district_id')->references('id')->on('districts')
             ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('Users')
+            $table->foreign('user_id')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
             
         });

@@ -13,9 +13,9 @@ class CreateAdministrationTable extends Migration
      */
     public function up()
     {
-        Schema::create('Administration', function (Blueprint $table) {
+        Schema::create('education', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->int('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')

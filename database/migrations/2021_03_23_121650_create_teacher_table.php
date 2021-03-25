@@ -18,11 +18,11 @@ class CreateTeacherTable extends Migration
             $table->id('name');
             $table->id('birthdate');
             $table->id('gender');
-            $table->id('institution_id');
+            $table->unsignedBigInteger('institution_id');
             $table->date('entry_date');
             $table->timestamps();
 
-            $table->foreign('institution_id')->references('id')->on('Institutions')
+            $table->foreign('institution_id')->references('id')->on('institutions')
             ->onUpdate('cascade')->onDelete('cascade');
         });
     }
