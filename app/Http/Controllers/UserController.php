@@ -55,18 +55,12 @@ class UserController extends Controller
 
     private function uploadPhotoAndReturnPhotoId(Request $request){
         $photo_id = null;
-        if ($file = $request->file('photo_id')) {
-            $name = time().$file->getClientOriginalName();   
-            $file->move('uploads/images',$name);
-            $photo = Photo::create(['file' => $name]);
+        if ($request->file('photo_id')) {
+            $path = $request->file('photo_id')->store('uploads/avatars');
+            $photo = Photo::create(['file' => $path]);
             $photo_id = $photo->id;
-         }
+        }
         return $photo_id;
-    }
-
-    private function deleteOldPhotoFromLibrary($file){
-        if(file_exists(substr($file,1)))
-          unlink(substr($file,1));
     }
 
     /**

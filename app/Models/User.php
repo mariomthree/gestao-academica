@@ -48,11 +48,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function role()
-    {
-        return $this->belongsTo(\App\Models\Role::class);
-    }
-
     public function photo()
     {
         return $this->belongsTo(\App\Models\Photo::class);

@@ -38,6 +38,9 @@
 									<thead>
 										<tr>
 											<th>Nome</th>
+											<th>Email</th>
+											<th>Função</th>
+											<th>Estado</th>
 											<th>Acção</th>
 										</tr>
 									</thead>
@@ -46,6 +49,9 @@
 											@foreach($users as $user)
 												<tr>
 													<td>{{$user->name}}</td>
+													<td>{{$user->email}}</td>
+													<td>{{$user->is_active == 1 ? 'Activo' : 'Inactivo'}}</td>
+													<td>{{$user->roles->get(0)->name}}</td>
 													<td class="text-right py-0 align-middle">
 														{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\UserController@destroy',$user->id]]) !!}
 														<div class="btn-group btn-group-sm">
