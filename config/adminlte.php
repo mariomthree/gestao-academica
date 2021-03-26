@@ -277,7 +277,7 @@ return [
         [
             'text'    => 'Distritos',
             'icon'    => 'fa fa-fw fa-list-ul',
-            'url'  => '#',
+            'url'  => 'admin/districts',
             'permission' => [
                 'create-district',
                 'edit-district',

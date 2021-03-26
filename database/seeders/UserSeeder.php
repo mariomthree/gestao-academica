@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-
+            
         $admin = Role::where('name','admin')->first();
         $user->attachRole($admin); 
     }
