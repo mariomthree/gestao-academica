@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\UserCreateRequest;
 use App\Models\Photo;
-
-use function PHPUnit\Framework\isNull;
+use App\Models\Role;
+use App\Models\Permission;
 
 class UserController extends Controller
 {
@@ -29,7 +29,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::pluck('name','id')->all();
+        return view('admin.users.create',['roles'=>$roles]);
     }
 
     /**
@@ -39,32 +40,27 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(UserCreateRequest $request)
-    {
-        return $request->all();
-        $data = $request->all();
+    {  
+        $data = $request->except('role_id');
         $data['password'] = bcrypt($request->password);   
         $data['photo_id'] = $this->uploadPhotoAndReturnPhotoId($request);
 
-        User::create($data);
+        $user = User::create($data);
+        
+        $role = Role::findOrFail($request->role_id);
+        $user->attachRole($role); 
+        
         return redirect('admin/users')->with('success','Utilizador adicionado.');
     }
 
-    private function uploadPhotoAndReturnPhotoId(Request $request, User $user = null){
-        $photo_id = $user->photo_id;
+    private function uploadPhotoAndReturnPhotoId(Request $request){
+        $photo_id = null;
         if ($file = $request->file('photo_id')) {
-            $name = time().$file->getClientOriginalName();
-            $uploaded = $file->move('uploads/images',$name);
-            if ($uploaded) 
-                if (isNull()) {
-                    $photo = Photo::findOrFail($user->photo_id);
-                    $this->deleteOldPhotoFromLibrary($photo->file);
-                    $photo->file = $name;
-                    $photo->save();
-                }else{
-                    $photo = Photo::create(['file'=>$name]);       
-                }
-                $photo_id = $photo->id;
-        }
+            $name = time().$file->getClientOriginalName();   
+            $file->move('uploads/images',$name);
+            $photo = Photo::create(['file' => $name]);
+            $photo_id = $photo->id;
+         }
         return $photo_id;
     }
 

@@ -56,7 +56,7 @@
 										</div>
 										<div class="form-group">
 										{!! Form::label('province_id','Provincia:') !!}
-										{!! Form::select('province_id',$provinces,null,[ 'class' => 'form-control custom-select form-control-border ' . ( $errors->has('province_id') ? ' is-invalid' : '' )]) !!}
+										{!! Form::select('province_id',[''=>'Selecionar']+$provinces,null,[ 'class' => 'form-control custom-select form-control-border ' . ( $errors->has('province_id') ? ' is-invalid' : '' )]) !!}
 											@if($errors->has('province_id'))
 												<div class="invalid-feedback">
 													<strong>{{ $errors->first('province_id') }}</strong>
