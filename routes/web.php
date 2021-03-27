@@ -39,10 +39,25 @@ Route::prefix('admin')->middleware([Admin::class])->group(function () {
     
     Route::middleware(['role:education'])->group(function () {
 
+        Route::resources([
+            'institution' => InstitutionController::class
+        ]);
     });
 
     Route::middleware(['role:direction'])->group(function () {
 
     });
+
+    Route::middleware(['role:direction'])->group(function () {
+
+    });
+
+    Route::resource( 'districts','DistrictController');
+    Route::resource( 'institutions','InstitutionController');
+    Route::resource( 'students', 'StudentController');
+    Route::resource( 'Teachers', 'TeacherController');
+    Route::resource( 'users', 'UserController');
+    
+ 
 
 });
