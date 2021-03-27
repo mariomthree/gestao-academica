@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Middleware\Admin;
+use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\DistrictController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +20,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::prefix('admin')->middleware([Admin::class])->group(function () {
+    
+    Route::get('/', [AdminController::class], 'index')->name('admin');
+    
+    Route::middleware(['role:admin'])->group(function () {
+        Route::resources([
+            'users' => UserController::class,
+            'provinces' => ProvinceController::class,
+            'districts' => DistrictController::class
+        ]);
+    });
+    
+    Route::middleware(['role:education'])->group(function () {
+
+    });
+
+    Route::middleware(['role:direction'])->group(function () {
+
+    });
+
+});
