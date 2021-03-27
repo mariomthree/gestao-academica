@@ -24,8 +24,28 @@ class UserSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-            
+        
+        $user2 = User::create([
+            'name'       => 'Vagner Edy',
+            'email'      => 'vagneredy@gmail.com',
+            'password'   => Hash::make('12345678'),
+            'is_active'  => 1, //active
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        $user3 = User::create([
+            'name'       => 'Ana Margarida',
+            'email'      => 'ana@gmail.com',
+            'password'   => Hash::make('12345678'),
+            'is_active'  => 1, //active
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
         $admin = Role::where('name','admin')->first();
         $user->attachRole($admin); 
+        $user2->attachRole($admin); 
+        $user3->attachRole($admin); 
     }
 }

@@ -75,7 +75,7 @@
 								<div class="form-group row">
 									{!! Form::label('telephone','Telefone:',['class'=>'col-sm-3 col-form-label ']) !!}
 									<div class="col-sm-9">
-										{!! Form::number('telephone',null,['class'=>'form-control'. ( $errors->has('telephone') ? ' is-invalid' : '' )]) !!}
+										{!! Form::number('telephone',null,['class'=>'form-control'. ( $errors->has('telephone') ? ' is-invalid' : '' ),'size'=>9]) !!}
 										@if($errors->has('telephone'))
 											<div class="invalid-feedback">
 												<strong>{{ $errors->first('telephone') }}</strong>
@@ -121,7 +121,7 @@
 								<div class="form-group row">
 									{!! Form::label('role_id','Função:',['class'=>'col-sm-3 col-form-label']) !!}
 									<div class="col-sm-9">
-										{!! Form::select('role_id',[''=>'Selecionar']+$roles,null,['class'=>'form-control custom-select']) !!}
+										{!! Form::select('role_id',$roles,null,['class'=>'form-control custom-select']) !!}
 										@if($errors->has('role_id'))
 											<div class="invalid-feedback">
 												<strong>{{ $errors->first('role_id') }}</strong>
