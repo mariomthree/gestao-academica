@@ -17,20 +17,20 @@ class RoleSeeder extends Seeder
         //Roles
         Role::create([
             'name' => 'admin',
-            'display_name' => 'User Administrator', 
-            'description' => 'User is allowed to manage and edit other users', 
+            'display_name' => 'Administrador', 
+            'description' => 'O utilizador tem permissão para gerenciar e editar outros usuários', 
         ]);
 
         Role::create([
-            'name' => 'direction',
-            'display_name' => 'Directorate of the Ministry of Education', 
-            'description' => 'The board of the ministry of education is permitted to administer and edit educational institutions.', 
+            'name' => 'meducation',
+            'display_name' => 'Ministerio da Educação', 
+            'description' => 'O ministério da educação tem permissão para administrar e editar instituições educacionais.', 
         ]);
         
         Role::create([
-            'name' => 'education',
-            'display_name' => 'Educational Institution', 
-            'description' => 'Educational institution manages productivity data', 
+            'name' => 'institution',
+            'display_name' => 'Instituição de Ensino', 
+            'description' => 'Instituição de ensino gerencia os dados de produtividade.', 
         ]);
     }
 }

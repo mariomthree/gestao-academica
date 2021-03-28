@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Middleware\Admin;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\InstitutionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,12 +37,14 @@ Route::prefix('admin')->middleware([Admin::class])->group(function () {
             'districts' => DistrictController::class
         ]);
     });
-    
-    Route::middleware(['role:education'])->group(function () {
 
+    Route::middleware(['role:meducation'])->group(function () {
+        Route::resources([
+            'institutions' => InstitutionController::class 
+        ]);
     });
-
-    Route::middleware(['role:direction'])->group(function () {
+    
+    Route::middleware(['role:institution'])->group(function () {
 
     });
 
