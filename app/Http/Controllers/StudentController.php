@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StudentRequest;
-use App\Http\Requests\StudentUpdateRequest;
 use App\Models\Student; 
 
 
@@ -26,15 +25,17 @@ class StudentController extends Controller
      */
     public function store(StudentRequest $request)
     {
-        Students::create([
-                'name' => $request->name,
-                'birthdate' => $request->birthdate,
-                'gender'  => $request->gender,
-                'institution_id' => $request->institution_id,
-                'entry_date' => $request->institution_id
+        return $request->all();
+
+        Student::create([
+            'name' => $request->name,
+            'birthdate' => $request->birthdate,
+            'gender'  => $request->gender,
+            'institution_id' => $request->institution_id,
+            'entry_date' => $request->institution_id
         ]);
 
-        return redirect('admin/students')->with('success','Estudante Registado.');
+        return redirect('admin/students')->with('success','Estudante adicionado.');
     }
 
     /**
@@ -45,13 +46,12 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        $students = Student::findOrFail($id);
+        $student = Student::findOrFail($id);
 
         return view('admin.students.edit',[
-            'students'=> $students
-
+            'student'=> $student
         ]);
-        }
+    }
 
     /**
      * Update the specified resource in storage.
@@ -60,16 +60,19 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StudentUpdateRequest $request)
+    public function update(StudentRequest $request, $id)
     {
-        $students = Student::findOrFail($id);
+        return $request->all();
 
-        $students->name=$request->name;
-        $students->birthdate=$request->birthdate;
-        $students->gender=$request->gender;
-        $students->institution_id=$request->institution_id;
-        $students->save();
-        
+        $student = Student::findOrFail($id);
+        $student->update([
+            'name' => $request->name,
+            'birthdate' => $request->birthdate,
+            'gender'  => $request->gender,
+            'institution_id' => $request->institution_id,
+            'entry_date' => $request->institution_id
+        ]);
+
         return redirect('admin/students')->with('success','Estudante  actualizado.');
     }
 
@@ -81,8 +84,8 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        $students = Student::findOrFail($id);
-        $students->delete();
+        $student = Student::findOrFail($id);
+        $student->delete();
         return redirect('admin/students')->with('success','Estudante removido.');
     }
 }

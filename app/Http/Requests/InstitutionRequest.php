@@ -29,6 +29,4 @@ class InstitutionRequest extends FormRequest
             'user_id' => 'required',
         ];
     }
-
-    
 }

@@ -25,11 +25,10 @@ class StudentRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'birthdate' => 'required',
+            'birthdate' => 'required|date',
             'gender' => 'required',
             'institution_id' => 'required',
-            'entry_date' => 'required'
-
+            'entry_date' => 'required|date'
         ];
     }
 }

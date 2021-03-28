@@ -1,13 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Middleware\Admin;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\InstitutionController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +24,6 @@ use App\Http\Controllers\DistrictController;
 */
 
 Auth::routes();
-
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -37,27 +39,16 @@ Route::prefix('admin')->middleware([Admin::class])->group(function () {
         ]);
     });
     
-    Route::middleware(['role:education'])->group(function () {
-
+    Route::middleware(['role:meducation'])->group(function () {
         Route::resources([
-            'institution' => InstitutionController::class
+            'instituitions' => InstitutionController::class
         ]);
     });
 
-    Route::middleware(['role:direction'])->group(function () {
-
+    Route::middleware(['role:institution'])->group(function () {
+        Route::resources([
+            'students' => StudentController::class,
+            'teachers' => TeacherController::class
+        ]);
     });
-
-    Route::middleware(['role:direction'])->group(function () {
-
-    });
-
-    Route::resource( 'districts','DistrictController');
-    Route::resource( 'institutions','InstitutionController');
-    Route::resource( 'students', 'StudentController');
-    Route::resource( 'Teachers', 'TeacherController');
-    Route::resource( 'users', 'UserController');
-    
- 
-
 });

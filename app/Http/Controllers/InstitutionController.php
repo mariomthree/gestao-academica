@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\InstitutionRequest;
 use App\Models\User; 
+use App\Models\Institution;
 
 class InstitutionController extends Controller
 {
 
     public function index()
     {
-        $institution = Institution::all();
-        return view('admin.institution.index',[
-            'institution'=> $institution
+        $institutions = Institution::all();
+        return view('admin.institutions.index',[
+            'institutions'=> $institutions
         ]);
     }
 
@@ -25,13 +26,15 @@ class InstitutionController extends Controller
      */
     public function store(InstitutionRequest $request)
     {
+        return $request->all();
+
         Institution::create([
-                'name' => $request->name,
-                'district_id' => $request->district_id,
-                 'user_id' => $request->user_id
+            'name' => $request->name,
+            'district_id' => $request->district_id,
+            'user_id' => $request->user_id
         ]);
 
-        return redirect('admin/institution')->with('success','Instituicao Registada.');
+        return redirect('admin/institutions')->with('success','Instituição adicionada.');
     }
 
     /**
@@ -43,13 +46,10 @@ class InstitutionController extends Controller
     public function edit($id)
     {
         $institution = Institution::findOrFail($id);
-
-        return view('admin.institution.edit',[
+        return view('admin.institutions.edit',[
             'institution'=> $institution,
-            'user'=> $user
-
         ]);
-        }
+    }
 
     /**
      * Update the specified resource in storage.
@@ -58,16 +58,18 @@ class InstitutionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(InstitutionRequest $request)
+    public function update(InstitutionRequest $request, $id)
     {
+        return $request->all();
         $institution = Institution::findOrFail($id);
         
-        $institution->name = $request->name;
-        $institution->district_id = $request->district_id;
-        $institution->user_id = $request->user_id;
-        $institution->save();
+        $institution->update([
+            'name' => $request->name,
+            'district_id' => $request->district_id,
+            'user_id' => $request->user_id
+        ]);
         
-        return redirect('admin/institution')->with('success','instituicao  actualizada.');
+        return redirect('admin/institutions')->with('success','Instituição  actualizada.');
     }
 
     /**
@@ -79,7 +81,8 @@ class InstitutionController extends Controller
     public function destroy($id)
     {
         $institution = Institution::findOrFail($id);
+        return $institution;
         $institution->delete();
-        return redirect('admin/institution')->with('success','instituicao removida.');
+        return redirect('admin/institutions')->with('success','Instituição removida.');
     }
 }
