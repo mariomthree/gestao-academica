@@ -17,24 +17,38 @@ class UserSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'name'       => 'Mario M. Mabande',
-            'email'      => 'mariomabande@gmail.com',
+            'name'       => 'Admin',
+            'email'      => 'admin@gmail.com',
             'password'   => Hash::make('12345678'),
             'is_active'  => 1, //active
             'created_at' => now(),
             'updated_at' => now()
         ]);
-            
+        
         $user2 = User::create([
-            'name'       => 'vagner Edy Mangue',
-            'email'      => 'vagnermangue@gmail.com',
+            'name'       => 'Direccao M. Educacao',
+            'email'      => 'meducation@gmail.com',
             'password'   => Hash::make('12345678'),
             'is_active'  => 1, //active
             'created_at' => now(),
             'updated_at' => now()
         ]);
+
+        $user3 = User::create([
+            'name'       => 'Instituicao de Ensino',
+            'email'      => 'institution@gmail.com',
+            'password'   => Hash::make('12345678'),
+            'is_active'  => 1, //active
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
         $admin = Role::where('name','admin')->first();
+        $meducation = Role::where('name','meducation')->first();
+        $institution = Role::where('name','institution')->first();
+
         $user->attachRole($admin); 
-        $user2->attachRole($admin); 
+        $user2->attachRole($meducation); 
+        $user3->attachRole($institution); 
     }
 }

@@ -125,8 +125,8 @@ class PermissionSeeder extends Seeder
         ]);
         
         $admin = Role::where('name','admin')->first();
-        $education = Role::where('name','education')->first();
-        $direction = Role::where('name','direction')->first();
+        $meducation = Role::where('name','meducation')->first();
+        $institution = Role::where('name','institution')->first();
 
         $admin->syncPermissions([
             $createUser,
@@ -140,13 +140,13 @@ class PermissionSeeder extends Seeder
             $deleteProvince
         ]);
 
-        $direction->syncPermissions([
+        $meducation->syncPermissions([
             $createEI,
             $editEI,
             $deleteEI
         ]); 
         
-        $education->syncPermissions([
+        $institution->syncPermissions([
             $createStudent,
             $editStudent,
             $deleteStudent,

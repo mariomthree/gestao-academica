@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\Photo;
 use App\Models\Role;
-use App\Models\Permission;
 
 class UserController extends Controller
 {
@@ -53,25 +53,20 @@ class UserController extends Controller
         return redirect('admin/users')->with('success','Utilizador adicionado.');
     }
 
-    private function uploadPhotoAndReturnPhotoId(Request $request){
-        $photo_id = null;
+    private function uploadPhotoAndReturnPhotoId(Request $request, User $user = null){
+        $photo_id = $user->photo_id;
         if ($request->file('photo_id')) {
             $path = $request->file('photo_id')->store('uploads/avatars');
-            $photo = Photo::create(['file' => $path]);
-            $photo_id = $photo->id;
+            if($user->photo_id){
+                $photo = Photo::findOrFail($user->photo_id);
+                $photo->file = $path;
+                $photo->save();
+            }else{
+                $photo = Photo::create(['file' => $path]);
+                $photo_id = $photo->id;
+            }
         }
         return $photo_id;
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -83,8 +78,11 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
+        $roles = Role::pluck('name','id')->all();
+        
         return view('admin.users.edit',[
-            'user' => $user
+            'user'  => $user,
+            'roles' => $roles
         ]);
     }
 
@@ -95,9 +93,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
-        //
+        return $request->all();
+        $user = User::findOrFail($id);
+
+        $data = $request->except('role_id');
+        $data['password'] = bcrypt($request->password);   
+        $data['photo_id'] = $this->uploadPhotoAndReturnPhotoId($request, $user);
+        $user->update($data);
+       
+        $role = Role::findOrFail($request->role_id);
+        $user->detachRoles($user->roles);
+        $user->attachRole($role);
+
+        return redirect('admin/users')->with('success','Utilizador actualizado.');
     }
 
     /**
@@ -108,6 +118,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect('admin/users')->with('success','Utilizador removido.');
     }
 }

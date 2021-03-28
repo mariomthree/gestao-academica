@@ -22,54 +22,62 @@
 
 @section('content')
 <div class="row">
-				<div class="card card-secondary" style="width: 100%;">
-				    <div class="card-header">
-				    </div>
-				    <div class="container-fluid" style="padding: 20px;">
-					
-					<div class="row">
-						<div class="col-sm-12 col-md-12">
-							<div class="card">
-								<div class="card-header">
-									<h3 class="card-title">Todos Utilizadores</h3>
-								</div>
-								<div class="card-body  table-responsive">
-								<table id="table" class="table table-striped">
-									<thead>
-										<tr>
-											<th>Nome</th>
-											<th>Email</th>
-											<th>Função</th>
-											<th>Estado</th>
-											<th>Acção</th>
-										</tr>
-									</thead>
-									<tbody>
-										@if($users)
-											@foreach($users as $user)
-												<tr>
-													<td>{{$user->name}}</td>
-													<td>{{$user->email}}</td>
-													<td>{{$user->is_active == 1 ? 'Activo' : 'Inactivo'}}</td>
-													<td>{{$user->roles->get(0)->name}}</td>
-													<td class="text-right py-0 align-middle">
-														{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\UserController@destroy',$user->id]]) !!}
-														<div class="btn-group btn-group-sm">
-															<a href="{{route('users.edit',$user->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-															<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-														</div>
-													{!! Form::close() !!}
-													</td>
-												</tr>
-											@endforeach
-										@endif
-									</tbody>
-								</table>
-							</div>
-						</div>
+	<div class="card card-secondary" style="width: 100%;">
+		<div class="card-header">
+		</div>
+		<div class="container-fluid" style="padding: 20px;">
+		<div class="text-center">
+			@if(Session::has('success'))
+				<div class="alert alert-success">
+					{{session('success')}} 
+				</div>
+			@endif
+		</div>
+		<div class="row">
+			<div class="col-sm-12 col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">Todos Utilizadores</h3>
 					</div>
-
+					<div class="card-body  table-responsive">
+					<table id="table" class="table table-striped">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Nome</th>
+								<th>Email</th>
+								<th>Estado</th>
+								<th>Função</th>
+								<th>Acção</th>
+							</tr>
+						</thead>
+						<tbody>
+							@if($users)
+								@foreach($users as $user)
+									<tr>
+										<td>{{$user->photo}}</td>
+										<td>{{$user->name}}</td>
+										<td>{{$user->email}}</td>
+										<td>{{$user->is_active == 1 ? 'Activo' : 'Inactivo'}}</td>
+										<td>{{$user->roles->get(0)->name}}</td>
+										<td class="text-left py-0 align-middle">
+											{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\UserController@destroy',$user->id]]) !!}
+											<div class="btn-group btn-group-sm">
+												<a href="{{route('users.edit',$user->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+												<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+											</div>
+										{!! Form::close() !!}
+										</td>
+									</tr>
+								@endforeach
+							@endif
+						</tbody>
+					</table>
 				</div>
 			</div>
-			<!-- /.row -->
+		</div>
+
+	</div>
+</div>
+<!-- /.row -->
 @stop

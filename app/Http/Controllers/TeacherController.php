@@ -58,7 +58,7 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TeacherUpdateRequest $request)
+    public function update(TeacherRequest $request, $id)
     {
         $teachers = Teacher::findOrFail($id);
 
