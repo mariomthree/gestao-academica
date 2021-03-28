@@ -21,94 +21,96 @@
 @stop
 
 @section('content')
+
 <div class="row">
-				<div class="card card-secondary" style="width: 100%;">
-				    <div class="card-header">
-				    </div>
-				    <div class="container-fluid" style="padding: 20px;">
-					<div class="text-center">
-						@if(Session::has('success'))
-							<div class="alert alert-success">
-								{{session('success')}} 
-							</div>
-						@endif
+	<div class="card card-secondary" style="width: 100%;">
+		<div class="card-header">
+		</div>
+		<div class="container-fluid" style="padding: 20px;">
+		<div class="text-center">
+			@if(Session::has('success'))
+				<div class="alert alert-success">
+					{{session('success')}} 
+				</div>
+			@endif
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12 col-md-5">
+
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">Novo Distrito</h3>
 					</div>
-					<div class="row">
-					
-						<div class="col-sm-12 col-md-5">
-			
-							<div class="card">
-								<div class="card-header">
-									<h3 class="card-title">Novo Distrito</h3>
-								</div>
-								<div class="card-body">
+					<div class="card-body">
 
-									{!! Form::open(['method'=>'POST','action'=>'App\Http\Controllers\DistrictController@store', 'id'=>'form']) !!}	
+						{!! Form::open(['method'=>'POST','action'=>'App\Http\Controllers\DistrictController@store', 'id'=>'form']) !!}	
 
-										{!! Form::label('name','Nome:') !!}
-										<div class="form-group">
-										{!! Form::text('name', null, [ 'class' => 'form-control ' . ( $errors->has('name') ? ' is-invalid' : '' )]) !!}
-											@if($errors->has('name'))
-												<div class="invalid-feedback">
-													<strong>{{ $errors->first('name') }}</strong>
-												</div>
-											@endif
-										</div>
-										<div class="form-group">
-										{!! Form::label('province_id','Provincia:') !!}
-										{!! Form::select('province_id',$provinces,null,[ 'class' => 'form-control custom-select form-control-border ' . ( $errors->has('province_id') ? ' is-invalid' : '' )]) !!}
-											@if($errors->has('province_id'))
-												<div class="invalid-feedback">
-													<strong>{{ $errors->first('province_id') }}</strong>
-												</div>
-											@endif
-										</div>
-										<div class="form-group">
-											{!! Form::submit('Adicionar',['class'=>'btn btn-primary']) !!}
-										</div>
-									{!! Form::close() !!}
-								</div>
+							{!! Form::label('name','Nome:') !!}
+							<div class="form-group">
+							{!! Form::text('name', null, [ 'class' => 'form-control ' . ( $errors->has('name') ? ' is-invalid' : '' )]) !!}
+								@if($errors->has('name'))
+									<div class="invalid-feedback">
+										<strong>{{ $errors->first('name') }}</strong>
+									</div>
+								@endif
 							</div>
-
-						</div>
-						<div class="col-sm-12 col-md-7">
-							<div class="card">
-								<div class="card-header">
-									<h3 class="card-title">Todos Distritos</h3>
-								</div>
-								<div class="card-body  table-responsive">
-								<table id="table" class="table table-striped">
-									<thead>
-										<tr>
-											<th>Nome</th>
-											<th>Provincia</th>
-											<th>Acção</th>
-										</tr>
-									</thead>
-									<tbody>
-										@if($districts)
-											@foreach($districts as $district)
-												<tr>
-													<td>{{$district->name}}</td>
-													<td>{{$district->province->name}}</td>
-													<td class="text-right py-0 align-middle">
-														{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\DistrictController@destroy',$district->id]]) !!}
-														<div class="btn-group btn-group-sm">
-															<a href="{{route('districts.edit',$district->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-															<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-														</div>
-													{!! Form::close() !!}
-													</td>
-												</tr>
-											@endforeach
-										@endif
-									</tbody>
-								</table>
+							<div class="form-group">
+							{!! Form::label('province_id','Provincia:') !!}
+							{!! Form::select('province_id',$provinces,null,[ 'class' => 'form-control custom-select form-control-border ' . ( $errors->has('province_id') ? ' is-invalid' : '' )]) !!}
+								@if($errors->has('province_id'))
+									<div class="invalid-feedback">
+										<strong>{{ $errors->first('province_id') }}</strong>
+									</div>
+								@endif
 							</div>
-						</div>
+							<div class="form-group">
+								{!! Form::submit('Adicionar',['class'=>'btn btn-primary']) !!}
+							</div>
+						{!! Form::close() !!}
 					</div>
+				</div>
 
+			</div>
+			<div class="col-sm-12 col-md-7">
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">Todos Distritos</h3>
+					</div>
+					<div class="card-body  table-responsive">
+					<table id="table" class="table table-striped">
+						<thead>
+							<tr>
+								<th>Nome</th>
+								<th>Provincia</th>
+								<th>Acção</th>
+							</tr>
+						</thead>
+						<tbody>
+							@if($districts)
+								@foreach($districts as $district)
+									<tr>
+										<td>{{$district->name}}</td>
+										<td>{{$district->province->name}}</td>
+										<td class="text-right py-0 align-middle">
+											{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\DistrictController@destroy',$district->id]]) !!}
+											<div class="btn-group btn-group-sm">
+												<a href="{{route('districts.edit',$district->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+												<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+											</div>
+										{!! Form::close() !!}
+										</td>
+									</tr>
+								@endforeach
+							@endif
+						</tbody>
+					</table>
 				</div>
 			</div>
-			<!-- /.row -->
+		</div>
+
+	</div>
+</div>
+<!-- /.row -->
+
 @stop

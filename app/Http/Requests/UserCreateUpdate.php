@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class InstitutionRequest extends FormRequest
+class UserCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,13 @@ class InstitutionRequest extends FormRequest
     public function rules()
     {
         return [
-            'institutionName' => 'required',
-            'district_id' => 'required',
-            'userName' => 'required',
-            'userEmail' => 'required|email',
-            'userPassword' => 'required|email',
+            'name' => 'required',
+            'telephone' => 'max:9',
+            'email' => 'required|unique:users',
+            'password' => 'required|min:8',
+            'description' => 'max:100',
             'is_active' => 'required',
+            'role_id' => 'required'
         ];
     }
 }

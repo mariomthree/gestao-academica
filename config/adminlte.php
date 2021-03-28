@@ -241,11 +241,11 @@ return [
             'submenu' => [
                     [
                         'text' => 'Todas Instituições',
-                        'url'  => '#'
+                        'url'  => 'admin/institutions'
                     ],
                     [
                         'text'  => 'Adicionar Nova',
-                        'url'  => '#'
+                        'url'  => 'admin/institutions/create'
                     ]
             ],
             'permission'  => [

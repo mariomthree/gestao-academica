@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests\InstitutionRequest;
-use App\Models\User; 
+use App\Models\District;
 use App\Models\Institution;
+use App\Models\Role;
+use App\Models\User;
 
 class InstitutionController extends Controller
 {
@@ -13,8 +16,20 @@ class InstitutionController extends Controller
     public function index()
     {
         $institutions = Institution::all();
+
         return view('admin.institutions.index',[
             'institutions'=> $institutions
+        ]);
+    }
+
+    public function create()
+    {
+        $districts = District::pluck('name','id')->all();
+        $roles = Role::pluck('name','id')->all();
+
+        return view('admin.institutions.create',[
+            'districts' => $districts,
+            'roles' => $roles
         ]);
     }
 
@@ -28,10 +43,20 @@ class InstitutionController extends Controller
     {
         return $request->all();
 
+        $user = User::create([
+            'name' => $request->userName,
+            'email' => $request->userEmail,
+            'password' => bcrypt($request->userPassword),
+            'is_active' => $request->is_active
+        ]);
+        
+        $role = Role::where('name','institution')->first();
+        $user->attachRole($role); 
+
         Institution::create([
-            'name' => $request->name,
+            'name' => $request->institutionName,
             'district_id' => $request->district_id,
-            'user_id' => $request->user_id
+            'user_id' => $user->id
         ]);
 
         return redirect('admin/institutions')->with('success','Instituição adicionada.');
