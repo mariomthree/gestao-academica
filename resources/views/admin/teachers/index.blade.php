@@ -9,12 +9,12 @@
 @section('content_header')
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Instituição</h1>
+        <h1 class="m-0 text-dark">Professor</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="/admin">Inicio</a></li>
-        <li class="breadcrumb-item active">Instituição</li>
+        <li class="breadcrumb-item active">Professor</li>
         </ol>
     </div><!-- /.col -->
 </div><!-- /.row -->
@@ -36,31 +36,32 @@
 		<div class="row">
 		
 			
-			<div class="col-sm-12 col-md-12">
+			<div class="col-sm-12 col-md-12a">
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Todas Instituicoes</h3>
+						<h3 class="card-title">Todos Professores</h3>
 					</div>
 					<div class="card-body  table-responsive">
 					<table id="table" class="table table-striped">
 						<thead>
 							<tr>
 								<th>Nome</th>
-								<th>Distrito</th>
-								<th>Utilizador</th>
-                                <th>Acccao</th>
+								<th>Data de aniversario</th>
+								<th>Genero</th>
+                                <th>Id da Instituição</th>
+                                <th>Data do resgisto</th>
 							</tr>
 						</thead>
 						<tbody>
-							@if($institutions)
-								@foreach($institutions as $institutions)
+							@if($teachers)
+								@foreach($teachers as $teachers)
 									<tr>
-										<td>{{$institutions->name}}</td>
-										<td>{{$institutions->institutions->name}}</td>
+										<td>{{$teachers->name}}</td>
+										<td>{{$teachers->teachers->name}}</td>
 										<td class="text-right py-0 align-middle">
-											{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\InstitutionController@destroy',$instituitions->id]]) !!}
+											{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\TeacherController@destroy',$teachers->id]]) !!}
 											<div class="btn-group btn-group-sm">
-												<a href="{{route('institutions.edit',$institutions->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+												<a href="{{route('teachers.edit',$teachers->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
 												<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
 											</div>
 										{!! Form::close() !!}

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\TeacherRequest;
 use App\Http\Requests\TeacherUpdateRequest;
-use App\Models\Teacher; 
+use App\Models\Institution; 
 
 class TeacherController extends Controller
 {
@@ -32,6 +32,18 @@ class TeacherController extends Controller
         ]);
 
         return redirect('admin/teachers')->with('success','Professor Registado.');
+    }
+
+    
+    public function create()
+    {
+
+        $institution = Institution::pluck('name','id')->all();
+        $roles = Role::pluck('name','id')->all();
+        return view('admin.teachers.create',[
+            'distrits'=> $districts,
+            'roles'=> $roles
+        ]);
     }
 
     /**

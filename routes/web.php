@@ -41,7 +41,7 @@ Route::prefix('admin')->middleware([Admin::class])->group(function () {
     
     Route::middleware(['role:meducation'])->group(function () {
         Route::resources([
-            'instituitions' => InstitutionController::class
+            'institutions' => InstitutionController::class
         ]);
     });
 
