@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Middleware\Admin;
 use Illuminate\Http\Request;
-use App\Http\Requests\InstitutionRequest;
+use App\Http\Requests\InstitutionCreateRequest;
 use App\Models\District;
 use App\Models\Institution;
 use App\Models\Role;
@@ -39,7 +39,7 @@ class InstitutionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(InstitutionRequest $request)
+    public function store(InstitutionCreateRequest $request)
     {
         return $request->all();
 

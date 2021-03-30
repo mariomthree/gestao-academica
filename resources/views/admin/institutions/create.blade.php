@@ -127,7 +127,6 @@
                                     @endif
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 {!! Form::submit('Adicionar',['class'=>'btn btn-primary']) !!}
                             </div>

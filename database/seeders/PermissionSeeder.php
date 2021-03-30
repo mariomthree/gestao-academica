@@ -105,11 +105,11 @@ class PermissionSeeder extends Seeder
             'display_name' => 'Delete Provinces', 
             'description' => 'Delete existing Provinces', 
         ]);
-    
+        
         $createDistrict = Permission::create([
             'name' => 'create-district',
-            'display_name' => 'Create Users', 
-            'description' => 'Create new user', 
+            'display_name' => 'Create Districts', 
+            'description' => 'Create new District', 
         ]);
             
         $editDistrict = Permission::create([
@@ -122,6 +122,24 @@ class PermissionSeeder extends Seeder
             'name' => 'delete-district',
             'display_name' => 'Delete Districts', 
             'description' => 'Delete existing Districts', 
+        ]);
+
+        $createTeaching = Permission::create([
+            'name' => 'create-teaching',
+            'display_name' => 'Create Teaching', 
+            'description' => 'Create new Teachings', 
+        ]);
+            
+        $editTeaching = Permission::create([
+            'name' => 'edit-teaching',
+            'display_name' => 'Edit Teaching', 
+            'description' => 'Edit existing Teachings', 
+        ]);
+        
+        $deleteTeaching = Permission::create([
+            'name' => 'delete-teaching',
+            'display_name' => 'Delete Teachings', 
+            'description' => 'Delete existing Teachings', 
         ]);
         
         $admin = Role::where('name','admin')->first();
@@ -137,7 +155,10 @@ class PermissionSeeder extends Seeder
             $deleteDistrict,
             $createProvince,
             $editProvince,
-            $deleteProvince
+            $deleteProvince,
+            $createTeaching,
+            $editTeaching,
+            $deleteTeaching
         ]);
 
         $meducation->syncPermissions([

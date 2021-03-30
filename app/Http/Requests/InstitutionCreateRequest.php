@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class InstitutionRequest extends FormRequest
+class InstitutionCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,8 +27,8 @@ class InstitutionRequest extends FormRequest
             'institutionName' => 'required',
             'district_id' => 'required',
             'userName' => 'required',
-            'userEmail' => 'required|email',
-            'userPassword' => 'required|email',
+            'userEmail' => 'required|email|unique:users',
+            'userPassword' => 'required|min:8',
             'is_active' => 'required',
         ];
     }

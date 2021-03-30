@@ -11,6 +11,7 @@ use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\TeachingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,8 @@ Route::prefix('admin')->middleware([Admin::class])->group(function () {
     Route::middleware(['role:admin'])->group(function () {
         Route::resources([
             'provinces' => ProvinceController::class,
-            'districts' => DistrictController::class
+            'districts' => DistrictController::class,
+            'teachings' => TeachingController::class
         ]);
     });
     

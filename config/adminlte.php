@@ -265,6 +265,16 @@ return [
             ]
         ],
         [
+            'text'    => 'Tipo de Ensino',
+            'icon'    => 'fas fa-fw fa-book',
+            'url'     => 'admin/teachings',
+            'permission'  => [
+                'create-teaching',
+                'edit-teaching',
+                'delete-teaching'
+            ]
+        ],
+        [
             'text'    => 'Provincias',
             'icon'    => 'fa fa-fw fa-list',
             'url'     => 'admin/provinces',
@@ -332,10 +342,7 @@ return [
             'permission'  => [
                 'create-student',
                 'edit-student',
-                'delete-student',
-                'create-teacher',
-                'edit-teacher',
-                'delete-teacher'
+                'delete-student'
             ]
         ],
         [
@@ -352,9 +359,6 @@ return [
                     ]
             ],
             'permission'  => [
-                'create-student',
-                'edit-student',
-                'delete-student',
                 'create-teacher',
                 'edit-teacher',
                 'delete-teacher'
