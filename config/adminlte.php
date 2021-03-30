@@ -317,6 +317,50 @@ return [
             ]
         ],
         [
+            'text'    => 'Estudantes',
+            'icon'    => 'fas fa-fw fa-user-graduate',
+            'submenu' => [
+                    [
+                        'text' => 'Todos Estudantes',
+                        'url'  => '#'
+                    ],
+                    [
+                        'text'  => 'Adicionar Novo',
+                        'url'  => '#'
+                    ]
+            ],
+            'permission'  => [
+                'create-student',
+                'edit-student',
+                'delete-student',
+                'create-teacher',
+                'edit-teacher',
+                'delete-teacher'
+            ]
+        ],
+        [
+            'text'    => 'Professores',
+            'icon'    => 'fas fa-fw fa-chalkboard-teacher',
+            'submenu' => [
+                    [
+                        'text' => 'Todos Professores',
+                        'url'  => '#'
+                    ],
+                    [
+                        'text'  => 'Adicionar Novo',
+                        'url'  => '#'
+                    ]
+            ],
+            'permission'  => [
+                'create-student',
+                'edit-student',
+                'delete-student',
+                'create-teacher',
+                'edit-teacher',
+                'delete-teacher'
+            ]
+        ],
+        [
             'text'    => 'Relatórios',
             'icon'    => 'fas fa-fw fa-chart-pie',
             'submenu' => [

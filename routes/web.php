@@ -30,10 +30,10 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::prefix('admin')->middleware([Admin::class])->group(function () {
     
     Route::get('/', [AdminController::class], 'index')->name('admin');
+    Route::resource('users', UserController::class);
     
     Route::middleware(['role:admin'])->group(function () {
         Route::resources([
-            'users' => UserController::class,
             'provinces' => ProvinceController::class,
             'districts' => DistrictController::class
         ]);
