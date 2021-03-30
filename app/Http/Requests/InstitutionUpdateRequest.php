@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class InstitutionCreateRequest extends FormRequest
+class InstitutionUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,14 +28,8 @@ class InstitutionCreateRequest extends FormRequest
             'district_id' => 'required',
             'teaching_id' => 'required',
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'is_active' => 'required',
-        ];
-    }
-
-    public function messages(){
-        return [
-            'institution.required' => 'O campo instituição é obrigatório.'
         ];
     }
 }

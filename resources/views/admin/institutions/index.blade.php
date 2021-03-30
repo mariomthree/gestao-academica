@@ -45,25 +45,32 @@
                             <thead>
                                 <tr>
                                     <th>Nome</th>
+                                    <th>Ensino</th>
                                     <th>Distito</th>
                                     <th>Utilizador</th>
                                     <th>Acção</th>
                                 </tr>
                             </thead>
                             <tbody>
+
 							@if($institutions)
 								@foreach($institutions as $institution)
 									<tr>
 										<td>{{$institution->name}}</td>
+										<td>
+                                        @foreach($institution->teachings as $teaching)
+                                            {{$teaching->name}},
+                                        @endforeach
+                                        </td>
 										<td>{{$institution->district->name}}</td>
 										<td>{{$institution->user->name}}</td>
-										<td class="text-right py-0 align-middle">
-											{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\InstitutionController@destroy',$district->id]]) !!}
+										<td class="py-0 align-middle">
+											{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\InstitutionController@destroy',$institution->id]]) !!}
 											<div class="btn-group btn-group-sm">
 												<a href="{{route('institutions.edit',$institution->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
 												<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
 											</div>
-										{!! Form::close() !!}
+										    {!! Form::close() !!}
 										</td>
 									</tr>
 								@endforeach

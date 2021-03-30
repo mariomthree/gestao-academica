@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\Admin;
-use Illuminate\Http\Request;
 use App\Http\Requests\InstitutionCreateRequest;
+use App\Http\Requests\InstitutionUpdateRequest;
 use App\Models\District;
 use App\Models\Institution;
 use App\Models\Role;
+use App\Models\Teaching;
 use App\Models\User;
 
 class InstitutionController extends Controller
@@ -16,7 +16,7 @@ class InstitutionController extends Controller
     public function index()
     {
         $institutions = Institution::all();
-
+   
         return view('admin.institutions.index',[
             'institutions'=> $institutions
         ]);
@@ -25,11 +25,11 @@ class InstitutionController extends Controller
     public function create()
     {
         $districts = District::pluck('name','id')->all();
-        $roles = Role::pluck('name','id')->all();
+        $teachings = Teaching::all();
 
         return view('admin.institutions.create',[
             'districts' => $districts,
-            'roles' => $roles
+            'teachings' => $teachings
         ]);
     }
 
@@ -41,24 +41,24 @@ class InstitutionController extends Controller
      */
     public function store(InstitutionCreateRequest $request)
     {
-        return $request->all();
-
         $user = User::create([
-            'name' => $request->userName,
-            'email' => $request->userEmail,
-            'password' => bcrypt($request->userPassword),
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt(Helpers::password_generate()),
+            'telephone' => $request->telephone,
             'is_active' => $request->is_active
         ]);
         
         $role = Role::where('name','institution')->first();
         $user->attachRole($role); 
 
-        Institution::create([
-            'name' => $request->institutionName,
+        $institution = Institution::create([
+            'name' => $request->institution,
             'district_id' => $request->district_id,
             'user_id' => $user->id
         ]);
 
+        $institution->teachings()->syncWithoutDetaching($request->teaching_id);
         return redirect('admin/institutions')->with('success','Instituição adicionada.');
     }
 
@@ -71,8 +71,13 @@ class InstitutionController extends Controller
     public function edit($id)
     {
         $institution = Institution::findOrFail($id);
+        $districts = District::pluck('name','id')->all();
+        $teachings = Teaching::all();
+        
         return view('admin.institutions.edit',[
             'institution'=> $institution,
+            'districts'=> $districts,
+            'teachings'=> $teachings
         ]);
     }
 
@@ -83,17 +88,27 @@ class InstitutionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(InstitutionRequest $request, $id)
+    public function update(InstitutionUpdateRequest $request, $id)
     {
-        return $request->all();
+
         $institution = Institution::findOrFail($id);
+        $user = User::findOrFail($institution->user_id);
         
-        $institution->update([
+        $user->update([
             'name' => $request->name,
-            'district_id' => $request->district_id,
-            'user_id' => $request->user_id
+            'email' => $request->email,
+            'password' => $user->password,
+            'telephone' => $request->telephone,
+            'is_active' => $request->is_active
         ]);
-        
+
+        $institution->update([
+            'name' => $request->institution,
+            'district_id' => $request->district_id,
+            'user_id' => $institution->user_id
+        ]);
+
+        $institution->teachings()->sync($request->teaching_id);
         return redirect('admin/institutions')->with('success','Instituição  actualizada.');
     }
 
@@ -106,7 +121,8 @@ class InstitutionController extends Controller
     public function destroy($id)
     {
         $institution = Institution::findOrFail($id);
-        return $institution;
+        $institution->teachings()->detach();
+        $institution->user->delete();
         $institution->delete();
         return redirect('admin/institutions')->with('success','Instituição removida.');
     }
