@@ -9,12 +9,12 @@
 @section('content_header')
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Distritos</h1>
+        <h1 class="m-0 text-dark">Tipo de Ensino</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="/admin">Inicio</a></li>
-        <li class="breadcrumb-item active">Distritos</li>
+        <li class="breadcrumb-item active">Tipo de Ensino</li>
         </ol>
     </div><!-- /.col -->
 </div><!-- /.row -->
@@ -40,11 +40,11 @@
 
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Novo Distrito</h3>
+						<h3 class="card-title">Novo Ensino</h3>
 					</div>
 					<div class="card-body">
 
-						{!! Form::open(['method'=>'POST','action'=>'App\Http\Controllers\DistrictController@store', 'id'=>'form']) !!}	
+						{!! Form::open(['method'=>'POST','action'=>'App\Http\Controllers\TeachingController@store', 'id'=>'form']) !!}	
 
 							{!! Form::label('name','Nome:') !!}
 							<div class="form-group">
@@ -52,15 +52,6 @@
 								@if($errors->has('name'))
 									<div class="invalid-feedback">
 										<strong>{{ $errors->first('name') }}</strong>
-									</div>
-								@endif
-							</div>
-							<div class="form-group">
-							{!! Form::label('province_id','Provincia:') !!}
-							{!! Form::select('province_id',$provinces,null,[ 'class' => 'form-control custom-select form-control-border ' . ( $errors->has('province_id') ? ' is-invalid' : '' )]) !!}
-								@if($errors->has('province_id'))
-									<div class="invalid-feedback">
-										<strong>{{ $errors->first('province_id') }}</strong>
 									</div>
 								@endif
 							</div>
@@ -75,27 +66,25 @@
 			<div class="col-sm-12 col-md-7">
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Todos Distritos</h3>
+						<h3 class="card-title">Ensinos</h3>
 					</div>
 					<div class="card-body  table-responsive">
 					<table id="table" class="table table-striped">
 						<thead>
 							<tr>
 								<th>Nome</th>
-								<th>Provincia</th>
 								<th>Acção</th>
 							</tr>
 						</thead>
 						<tbody>
-							@if($districts)
-								@foreach($districts as $district)
+							@if($teachings)
+								@foreach($teachings as $teaching)
 									<tr>
-										<td>{{$district->name}}</td>
-										<td>{{$district->province->name}}</td>
+										<td>{{$teaching->name}}</td>
 										<td class="text-right py-0 align-middle">
-											{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\DistrictController@destroy',$district->id]]) !!}
+											{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\TeachingController@destroy',$teaching->id]]) !!}
 											<div class="btn-group btn-group-sm">
-												<a href="{{route('districts.edit',$district->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+												<a href="{{route('teachings.edit',$teaching->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
 												<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
 											</div>
 										{!! Form::close() !!}

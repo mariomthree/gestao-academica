@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Province;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,8 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(RoleSeeder::class);
-        $this->call(PermissionSeeder::class);
-        $this->call(UserSeeder::class);
+        $this->call([
+            RoleSeeder::class,
+            PermissionSeeder::class,
+            UserSeeder::class,
+            ProvinceSeeder::class,
+            DistrictSeeder::class,
+            TeachingSeeder::class
+        ]);
     }
 }

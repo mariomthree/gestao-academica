@@ -141,6 +141,7 @@
 										@endif
 									</div>
 								</div>
+								
 								<div class="form-group row">
 									<div class="col-md-9 offset-3">
 										{!! Form::submit('Adicionar',['class'=>'btn btn-primary']) !!}

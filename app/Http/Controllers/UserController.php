@@ -29,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('name','id')->all();
+        $roles = Role::where('name','<>','institution')->get()->pluck('name','id');
         return view('admin.users.create',['roles'=>$roles]);
     }
 
@@ -78,8 +78,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $roles = Role::pluck('name','id')->all();
-        
+        $roles = Role::where('name','<>','institution')->get()->pluck('name','id');
         return view('admin.users.edit',[
             'user'  => $user,
             'roles' => $roles

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\StudentRequest;
+use App\Models\Institution;
 use App\Models\Student; 
+use Illuminate\Support\Facades\Auth;
 
 
 class StudentController extends Controller
@@ -17,6 +18,9 @@ class StudentController extends Controller
         ]);
     }
 
+    public function create(){
+        return view('admin.students.create');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -25,14 +29,14 @@ class StudentController extends Controller
      */
     public function store(StudentRequest $request)
     {
-        return $request->all();
-
+        $institution = Institution::where('user_id', Auth::user()->id)->first();
+        
         Student::create([
             'name' => $request->name,
             'birthdate' => $request->birthdate,
             'gender'  => $request->gender,
-            'institution_id' => $request->institution_id,
-            'entry_date' => $request->institution_id
+            'institution_id' => $institution->id,
+            'entry_date' => $request->entry_date
         ]);
 
         return redirect('admin/students')->with('success','Estudante adicionado.');
@@ -62,18 +66,18 @@ class StudentController extends Controller
      */
     public function update(StudentRequest $request, $id)
     {
-        return $request->all();
-
         $student = Student::findOrFail($id);
+        $institution = Institution::where('user_id', Auth::user()->id)->first();
+
         $student->update([
             'name' => $request->name,
             'birthdate' => $request->birthdate,
             'gender'  => $request->gender,
-            'institution_id' => $request->institution_id,
-            'entry_date' => $request->institution_id
+            'institution_id' => $institution->id,
+            'entry_date' => $request->entry_date
         ]);
 
-        return redirect('admin/students')->with('success','Estudante  actualizado.');
+        return redirect('admin/students')->with('success','Estudante actualizado.');
     }
 
     /**

@@ -265,6 +265,16 @@ return [
             ]
         ],
         [
+            'text'    => 'Tipo de Ensino',
+            'icon'    => 'fas fa-fw fa-book',
+            'url'     => 'admin/teachings',
+            'permission'  => [
+                'create-teaching',
+                'edit-teaching',
+                'delete-teaching'
+            ]
+        ],
+        [
             'text'    => 'Provincias',
             'icon'    => 'fa fa-fw fa-list',
             'url'     => 'admin/provinces',
@@ -311,6 +321,44 @@ return [
                 'create-student',
                 'edit-student',
                 'delete-student',
+                'create-teacher',
+                'edit-teacher',
+                'delete-teacher'
+            ]
+        ],
+        [
+            'text'    => 'Estudantes',
+            'icon'    => 'fas fa-fw fa-user-graduate',
+            'submenu' => [
+                    [
+                        'text' => 'Todos Estudantes',
+                        'url'  => 'admin/students'
+                    ],
+                    [
+                        'text'  => 'Adicionar Novo',
+                        'url'  => 'admin/students/create'
+                    ]
+            ],
+            'permission'  => [
+                'create-student',
+                'edit-student',
+                'delete-student'
+            ]
+        ],
+        [
+            'text'    => 'Professores',
+            'icon'    => 'fas fa-fw fa-chalkboard-teacher',
+            'submenu' => [
+                    [
+                        'text' => 'Todos Professores',
+                        'url'  => '#'
+                    ],
+                    [
+                        'text'  => 'Adicionar Novo',
+                        'url'  => '#'
+                    ]
+            ],
+            'permission'  => [
                 'create-teacher',
                 'edit-teacher',
                 'delete-teacher'

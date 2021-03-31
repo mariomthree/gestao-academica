@@ -10,10 +10,10 @@
     <div class="row">
     <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box">
-              <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-shopping-cart"></i></span>
+              <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-fw fa-graduation-cap"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">ITEM 01</span>
+                <span class="info-box-text" >Instituições</span>
                 <span class="info-box-number">
                   786 000
                 </span>
@@ -25,10 +25,10 @@
           <!-- /.col -->
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-copy"></i></span>
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-fw fa-user-graduate"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">ITEM 02</span>
+                <span class="info-box-text">Estudantes</span>
                 <span class="info-box-number">41 410</span>
               </div>
               <!-- /.info-box-content -->
@@ -42,10 +42,10 @@
 
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-people-carry "></i></span>
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-fw fa-chalkboard-teacher "></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">ITEM 03</span>
+                <span class="info-box-text">Professores</span>
                 <span class="info-box-number">760</span>
               </div>
               <!-- /.info-box-content -->

@@ -41,7 +41,7 @@ class ProvinceController extends Controller
     public function edit($id)
     {
         $province = Province::findOrFail($id);
-        return view('admin/provinces/edit', ['province' => $province]);
+        return view('admin/provinces/edit', ['province' => $province])->with('success','Provincia adicionado.');
     }
 
     /**
@@ -56,7 +56,7 @@ class ProvinceController extends Controller
         $province = Province::findOrFail($id);
         $province->name = $request->name;
         $province->save();
-        return redirect('admin/provinces');
+        return redirect('admin/provinces')->with('success','Provincia actualizada.');
     }
 
     /**
@@ -69,6 +69,6 @@ class ProvinceController extends Controller
     {
         $province = Province::findOrFail($id);
         $province->delete();
-        return redirect('admin/provinces');
+        return redirect('admin/provinces')->with('success','Provincia removida.');
     }
 }
