@@ -54,19 +54,19 @@
 						</thead>
 						<tbody>
 							@if($students)
-								@foreach($students as $students)
+								@foreach($students as $student)
 									<tr>
-										<td>{{$students->name}}</td>
-										<td>{{$students->gender}}</td>
-										<td>{{$students->birthdate}}</td>
-										<td>{{$students->entry_date}}</td>
-										<td class="text-right py-0 align-middle">
-											{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\StudentsController@destroy',$students->id]]) !!}
-											<div class="btn-group btn-group-sm">
-												<a href="{{route('students.edit',$students->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-												<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-											</div>
-										{!! Form::close() !!}
+										<td>{{$student->name}}</td>
+										<td>{{$student->gender}}</td>
+										<td>{{$student->birthdate}}</td>
+										<td>{{$student->entry_date}}</td>
+										<td class="py-0 align-middle">
+											{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\StudentController@destroy',$student->id]]) !!}
+												<div class="btn-group btn-group-sm">
+													<a href="{{route('students.edit',$student->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+													<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+												</div>
+											{!! Form::close() !!}
 										</td>
 									</tr>
 								@endforeach
