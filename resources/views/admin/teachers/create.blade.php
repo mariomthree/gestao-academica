@@ -72,16 +72,8 @@
 									</div>
 								@endif
 							</div>
-							<div class="form-group">
-							{!! Form::label('institution_id','Instituicoes:') !!}
-							{!! Form::select('institution_id',$institutions,null,[ 'class' => 'form-control custom-select form-control-border ' . ( $errors->has('institution_id') ? ' is-invalid' : '' )]) !!}
-								@if($errors->has('institution_id'))
-									<div class="invalid-feedback">
-										<strong>{{ $errors->first('institution_id') }}</strong>
-									</div>
-								@endif
-							</div>
-                            {!! Form::label('name','Data de registo:') !!}
+							
+                            {!! Form::date('date','Data de registo:') !!}
 							<div class="form-group">
 							{!! Form::text('name', null, [ 'class' => 'form-control ' . ( $errors->has('name') ? ' is-invalid' : '' )]) !!}
 								@if($errors->has('name'))
