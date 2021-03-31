@@ -9,18 +9,19 @@
 @section('content_header')
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Professor</h1>
+        <h1 class="m-0 text-dark">Professores</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="/admin">Inicio</a></li>
-        <li class="breadcrumb-item active">Professor</li>
+        <li class="breadcrumb-item active">Professores</li>
         </ol>
     </div><!-- /.col -->
 </div><!-- /.row -->
 @stop
 
 @section('content')
+
 <div class="row">
 	<div class="card card-secondary" style="width: 100%;">
 		<div class="card-header">
@@ -33,10 +34,9 @@
 				</div>
 			@endif
 		</div>
+
 		<div class="row">
-		
-			
-			<div class="col-sm-12 col-md-12a">
+			<div class="col-sm-12 col-md-12">
 				<div class="card">
 					<div class="card-header">
 						<h3 class="card-title">Todos Professores</h3>
@@ -46,25 +46,27 @@
 						<thead>
 							<tr>
 								<th>Nome</th>
-								<th>Data de aniversario</th>
-								<th>Genero</th>
-                                <th>Id da Instituição</th>
-                                <th>Data do resgisto</th>
+								<th>Sexo</th>
+								<th>Data de Nascimento</th>
+								<th>Data de Ingresso</th>
+								<th>Acção</th>
 							</tr>
 						</thead>
 						<tbody>
 							@if($teachers)
-								@foreach($teachers as $teachers)
+								@foreach($teachers as $teacher)
 									<tr>
-										<td>{{$teachers->name}}</td>
-										<td>{{$teachers->teachers->name}}</td>
-										<td class="text-right py-0 align-middle">
-											{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\TeacherController@destroy',$teachers->id]]) !!}
-											<div class="btn-group btn-group-sm">
-												<a href="{{route('teachers.edit',$teachers->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-												<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-											</div>
-										{!! Form::close() !!}
+										<td>{{$teacher->name}}</td>
+										<td>{{$teacher->gender}}</td>
+										<td>{{$teacher->birthdate}}</td>
+										<td>{{$teacher->entry_date}}</td>
+										<td class="py-0 align-middle">
+											{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\StudentController@destroy',$teacher->id]]) !!}
+												<div class="btn-group btn-group-sm">
+													<a href="{{route('teachers.edit',$teacher->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+													<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+												</div>
+											{!! Form::close() !!}
 										</td>
 									</tr>
 								@endforeach
@@ -78,4 +80,5 @@
 	</div>
 </div>
 <!-- /.row -->
+
 @stop

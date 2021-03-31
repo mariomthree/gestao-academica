@@ -5,12 +5,12 @@
 @section('content_header')
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Adicionar Professores</h1>
+        <h1 class="m-0 text-dark">Actualizar Estudantes</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="/admin">Inicio</a></li>
-            <li class="breadcrumb-item active">Professores</li>
+            <li class="breadcrumb-item active">Estudantes</li>
         </ol>
     </div><!-- /.col -->
 </div><!-- /.row -->
@@ -22,7 +22,8 @@
 		<div class="card-header">
 		</div>
 		<div class="card-body" style="padding: 20px;">
-			{!! Form::open(['method'=>'POST','action'=>['App\Http\Controllers\TeacherController@store'],'id'=>'form','files'=>true]) !!}
+			{!! Form::model($teacher,['method'=>'PATCH','action'=>['App\Http\Controllers\TeacherController@update',$teacher->id],'id'=>'form','files'=>true]) !!}
+
 			<!-- Main content -->
 			<section class="content">
 				<div class="container-fluid">
@@ -84,7 +85,7 @@
 								</div>
 
 								<div class="form-group">
-									{!! Form::submit('Adicionar',['class'=>'btn btn-primary']) !!}
+									{!! Form::submit('Actualizar',['class'=>'btn btn-primary']) !!}
 								</div>
 
 							{!! Form::close() !!}

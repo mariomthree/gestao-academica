@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TeacherRequest;
-use App\Http\Requests\TeacherUpdateRequest;
-use App\Models\Institution; 
+use App\Models\Institution;
+use App\Models\Teacher;
 
 class TeacherController extends Controller
 {
@@ -15,35 +15,31 @@ class TeacherController extends Controller
         return view('admin.teachers.index',[
             'teachers'=> $teachers
         ]);
-        }
-        /**
+    }
+
+    public function create(){
+        return view('admin.teachers.create');
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TeacherRequest $request) {
-        Teacher::create([
-                'name' => $request->name,
-                'birthdate' => $request->birthdate,
-                'gender'  => $request->gender,
-                'institution_id' => $request->institution_id,
-                'entry_date' => $request->institution_id
-        ]);
-
-        return redirect('admin/teachers')->with('success','Professor Registado.');
-    }
-
-    
-    public function create()
+    public function store(TeacherRequest $request)
     {
-
-        $institution = Institution::pluck('name','id')->all();
-        $roles = Role::pluck('name','id')->all();
-        return view('admin.teachers.create',[
-            'distrits'=> $districts,
-            'roles'=> $roles
+        $institution = Institution::where('user_id', Auth::user()->id)->first();
+        
+        Teacher::create([
+            'name' => $request->name,
+            'birthdate' => $request->birthdate,
+            'gender'  => $request->gender,
+            'institution_id' => $institution->id,
+            'entry_date' => $request->entry_date
         ]);
+
+        return redirect('admin/teachers')->with('success','Professor adicionado.');
     }
 
     /**
@@ -54,15 +50,13 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-        $teachers = Teacher::findOrFail($id);
+        $teacher = Teacher::findOrFail($id);
 
         return view('admin.teachers.edit',[
-            'teachers'=> $teachers
-
+            'teacher'=> $teacher
         ]);
-        }
+    }
 
-    
     /**
      * Update the specified resource in storage.
      *
@@ -72,14 +66,17 @@ class TeacherController extends Controller
      */
     public function update(TeacherRequest $request, $id)
     {
-        $teachers = Teacher::findOrFail($id);
+        $teacher = Teacher::findOrFail($id);
+        $institution = Institution::where('user_id', Auth::user()->id)->first();
 
-        $teachers->name=$request->name;
-        $teachers->birthdate=$request->birthdate;
-        $teachers->gender=$request->gender;
-        $teachers->institution_id=$request->institution_id;
-        $teachers->save();
-        
+        $teacher->update([
+            'name' => $request->name,
+            'birthdate' => $request->birthdate,
+            'gender'  => $request->gender,
+            'institution_id' => $institution->id,
+            'entry_date' => $request->entry_date
+        ]);
+
         return redirect('admin/teachers')->with('success','Professor actualizado.');
     }
 
@@ -91,13 +88,8 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-        $teachers = Teacher::findOrFail($id);
-        $teachers->delete();
+        $teacher = Teacher::findOrFail($id);
+        $teacher->delete();
         return redirect('admin/teachers')->with('success','Professor removido.');
     }
-
-    }
-
-    
-    
-
+}
