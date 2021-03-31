@@ -351,11 +351,11 @@ return [
             'submenu' => [
                     [
                         'text' => 'Todos Professores',
-                        'url'  => '#'
+                        'url'  => 'admin/teachers'
                     ],
                     [
                         'text'  => 'Adicionar Novo',
-                        'url'  => '#'
+                        'url'  => 'admin/teachers/create'
                     ]
             ],
             'permission'  => [
