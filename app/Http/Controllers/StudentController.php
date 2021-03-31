@@ -17,6 +17,18 @@ class StudentController extends Controller
         ]);
     }
 
+    public function create(){
+
+        Student::create([
+            'name' => 'name',
+            'birthdate' => 'birthdate',
+            'gender'  => 'gender',
+            'institution_id' => 'institution_id',
+            'entry_date' => 'entry_date'
+        ]);
+
+        return redirect('admin/students')->with('success','Estudante adicionado.');
+    }
     /**
      * Store a newly created resource in storage.
      *

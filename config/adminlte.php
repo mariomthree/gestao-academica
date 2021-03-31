@@ -332,11 +332,11 @@ return [
             'submenu' => [
                     [
                         'text' => 'Todos Estudantes',
-                        'url'  => '#'
+                        'url'  => 'admin/students'
                     ],
                     [
                         'text'  => 'Adicionar Novo',
-                        'url'  => '#'
+                        'url'  => 'admin/students/create'
                     ]
             ],
             'permission'  => [
