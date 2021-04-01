@@ -40,12 +40,12 @@
 						</div>
 						<ul class="list-group list-group-unbordered mb-3" style="margin-top: 4.2rem;">
 							<li class="list-group-item">
-							<b>Photo of perfil:</b>
+							<b>Profile picture:</b>
 							</li>
 						</ul>
 						<div class="form-group">
 							<div class="custom-file">
-								{!!Form::label('photo_id','Photo:',['class'=>'custom-file-label']) !!}
+								{!!Form::label('photo_id','Picture:',['class'=>'custom-file-label']) !!}
 								{!! Form::file('photo_id',null,['class'=>'form-control custom-file-input']) !!}       
 							</div>
 						</div>

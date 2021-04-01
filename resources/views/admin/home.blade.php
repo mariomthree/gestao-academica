@@ -9,27 +9,26 @@
 @section('content')
     <div class="row">
     <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box">
-              <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-fw fa-graduation-cap"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text" >Instituições</span>
-                <span class="info-box-number">
-                  786 000
-                </span>
-              </div>
-              <!-- /.info-box-content -->
+        @if(Auth::user()->hasRole(['institution','meducation']))
+          <div class="info-box">
+            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-fw fa-graduation-cap"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text" >Instituições</span>
+              <span class="info-box-number">
+              {{$institutions}}
+              </span>
             </div>
-            <!-- /.info-box -->
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
           </div>
           <!-- /.col -->
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-fw fa-user-graduate"></i></span>
-
               <div class="info-box-content">
                 <span class="info-box-text">Estudantes</span>
-                <span class="info-box-number">41 410</span>
+                <span class="info-box-number">{{$students}}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -39,14 +38,12 @@
 
           <!-- fix for small devices only -->
           <div class="clearfix hidden-md-up"></div>
-
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-fw fa-chalkboard-teacher "></i></span>
-
               <div class="info-box-content">
                 <span class="info-box-text">Professores</span>
-                <span class="info-box-number">760</span>
+                <span class="info-box-number">{{$teachers}}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -55,17 +52,18 @@
           <!-- /.col -->
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-chart-pie"></i></span>
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-globe-africa"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">ITEM 03</span>
-                <span class="info-box-number">20%</span>
+                <span class="info-box-text">Distritos</span>
+                <span class="info-box-number">{{$districts}}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
+          @endif
     </div>
 
 @stop

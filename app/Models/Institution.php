@@ -21,6 +21,15 @@ class Institution extends Model
    {
       return $this->belongsToMany(Teaching::class);
    }
- 
+   
+   public function students()
+   {
+      return $this->hasMany(Student::class);
+   }
+
+   public function teachers()
+   {
+      return $this->hasMany(Teacher::class);
+   }
 
 }
