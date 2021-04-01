@@ -231,7 +231,7 @@ return [
         ],
         [
             'text'        => 'Inicio',
-            'url'         => '/',
+            'url'         => '/admin',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
             'classes'     => 'mt-2'
         ],
@@ -257,7 +257,7 @@ return [
         [
             'text'    => 'Relatórios',
             'icon'    => 'fas fa-fw fa-chart-pie',
-            'url'     => '#',
+            'url'     => 'admin/report',
             'permission'  => [
                 'create-ei',
                 'edit-ei',
@@ -359,28 +359,6 @@ return [
                     ]
             ],
             'permission'  => [
-                'create-teacher',
-                'edit-teacher',
-                'delete-teacher'
-            ]
-        ],
-        [
-            'text'    => 'Relatórios',
-            'icon'    => 'fas fa-fw fa-chart-pie',
-            'submenu' => [
-                    [
-                        'text' => 'Todos Relatórios',
-                        'url'  => '#'
-                    ],
-                    [
-                        'text'  => 'Adicionar Novo',
-                        'url'  => '#'
-                    ]
-            ],
-            'permission'  => [
-                'create-student',
-                'edit-student',
-                'delete-student',
                 'create-teacher',
                 'edit-teacher',
                 'delete-teacher'

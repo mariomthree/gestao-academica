@@ -11,5 +11,4 @@ class District extends Model
    public function province(){
       return $this->belongsTo(Province::class);
    }
-
 }

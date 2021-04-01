@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\InstitutionController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TeachingController;
@@ -26,12 +27,12 @@ use App\Http\Controllers\TeachingController;
 
 Auth::routes();
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->middleware([Admin::class])->group(function () {
     
-    Route::get('/', [AdminController::class], 'index')->name('admin');
-    Route::resource('users', UserController::class);
+    Route::get('/', [AdminController::class, 'index'])->name('admin');
+    Route::get('/report', [ReportController::class, 'index']);
+    Route::resource('users', UserController::class);    
     
     Route::middleware(['role:admin'])->group(function () {
         Route::resources([

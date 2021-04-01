@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Institution;
 use App\Models\Province;
 use Illuminate\Database\Seeder;
 
@@ -20,7 +21,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ProvinceSeeder::class,
             DistrictSeeder::class,
-            TeachingSeeder::class
+            TeachingSeeder::class,
+            // InstitutionSeeder::class,
+            // StudentSeeder::class,
+            // TeacherSeeder::class
         ]);
     }
 }
