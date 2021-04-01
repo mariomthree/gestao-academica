@@ -9,6 +9,7 @@ use App\Models\Institution;
 use App\Models\Role;
 use App\Models\Teaching;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class InstitutionController extends Controller
 {
@@ -30,6 +31,15 @@ class InstitutionController extends Controller
         return view('admin.institutions.create',[
             'districts' => $districts,
             'teachings' => $teachings
+        ]);
+    }
+
+    public function institution(){
+        $institution = institution::where('user_id', Auth::user()->id)->first();
+        $teachings = Teaching::all();
+        return view('admin.institutions.institution',[
+            'institution' =>$institution,
+            'teachings' =>$teachings
         ]);
     }
 

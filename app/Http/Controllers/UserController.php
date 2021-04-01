@@ -54,13 +54,14 @@ class UserController extends Controller
     }
 
     private function uploadPhotoAndReturnPhotoId(Request $request, User $user = null){
-        $photo_id = $user->photo_id;
+        $photo_id = null;
         if ($request->file('photo_id')) {
             $path = $request->file('photo_id')->store('uploads/avatars');
             if($user->photo_id){
                 $photo = Photo::findOrFail($user->photo_id);
                 $photo->file = $path;
                 $photo->save();
+                $user->photo_id;
             }else{
                 $photo = Photo::create(['file' => $path]);
                 $photo_id = $photo->id;

@@ -33,7 +33,6 @@
 						</div><!-- /.card-header -->
 						<div class="card-body">
 
-							{!! Form::open(['method'=>'POST','action'=>'App\Http\Controllers\StudentController@store', 'id'=>'form']) !!}	
 						
 								<div class="form-group row">
 									{!! Form::label('name','Nome:',['class'=>'col-sm-3 col-form-label']) !!}
@@ -87,7 +86,6 @@
 									{!! Form::submit('Adicionar',['class'=>'btn btn-primary']) !!}
 								</div>
 
-							{!! Form::close() !!}
 		
 					
 						</div><!-- /.card-body -->
