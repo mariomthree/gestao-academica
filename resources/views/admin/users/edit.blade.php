@@ -28,31 +28,30 @@
 				<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-3">
+						<!-- Profile Image -->
+						<div class="card card-primary card-outline">
+							<div class="card-body box-profile mt-4">
+							<div class="text-center">
 
-					<!-- Profile Image -->
-					<div class="card card-primary card-outline">
-						<div class="card-body box-profile mt-4">
-						<div class="text-center">
-
-							<img id="profile-user-img" style="height: 128px; width: 128px;" class="profile-user-img img-fluid img-circle"
-								src="{{$user->adminlte_image()}}"
-								alt="User profile picture">
-						</div>
-						<ul class="list-group list-group-unbordered mb-3" style="margin-top: 4.2rem;">
-							<li class="list-group-item">
-							<b>Photo of perfil:</b>
-							</li>
-						</ul>
-						<div class="form-group">
-							<div class="custom-file">
-								{!!Form::label('photo_id','Photo:',['class'=>'custom-file-label']) !!}
-								{!! Form::file('photo_id',null,['class'=>'form-control custom-file-input']) !!}       
+								<img id="profile-user-img" style="height: 128px; width: 128px;" class="profile-user-img img-fluid img-circle"
+									src="{{$user->adminlte_image()}}"
+									alt="User profile picture">
 							</div>
+							<ul class="list-group list-group-unbordered mb-3" style="margin-top: 4.2rem;">
+								<li class="list-group-item">
+								<b>Photo of perfil:</b>
+								</li>
+							</ul>
+							<div class="form-group">
+								<div class="custom-file">
+									{!!Form::label('photo_id','Photo:',['class'=>'custom-file-label']) !!}
+									{!! Form::file('photo_id',null,['class'=>'form-control custom-file-input']) !!}       
+								</div>
+							</div>
+							</div>
+							<!-- /.card-body -->
 						</div>
-						</div>
-						<!-- /.card-body -->
-					</div>
-					<!-- /.card -->
+						<!-- /.card -->
 					</div>
 					<!-- /.col -->
 					<div class="col-md-9">

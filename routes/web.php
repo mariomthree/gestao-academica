@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\InstitutionController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TeachingController;
@@ -32,7 +33,8 @@ Route::prefix('admin')->middleware([Admin::class])->group(function () {
     
     Route::get('/', [AdminController::class], 'index')->name('admin');
     Route::resource('users', UserController::class);
-    
+    Route::resource('/profile', ProfileController::class);
+
     Route::middleware(['role:admin'])->group(function () {
         Route::resources([
             'provinces' => ProvinceController::class,
