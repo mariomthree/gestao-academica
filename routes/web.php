@@ -32,7 +32,7 @@ Route::prefix('admin')->middleware([Admin::class])->group(function () {
     
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::get('/report', [ReportController::class, 'index']);
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class);    
     
     Route::middleware(['role:admin'])->group(function () {
         Route::resources([
