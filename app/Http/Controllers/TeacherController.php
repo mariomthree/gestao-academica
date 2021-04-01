@@ -11,7 +11,8 @@ class TeacherController extends Controller
 {
     public function index()
     {
-        $teachers = Teacher::all();
+        $institution = institution::where('user_id', Auth::user()->id)->first();
+        $teachers = Teacher::where('institution_id', $institution->id)->get();
         return view('admin.teachers.index',[
             'teachers'=> $teachers
         ]);

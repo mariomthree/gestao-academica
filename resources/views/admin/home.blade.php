@@ -9,13 +9,13 @@
 @section('content')
     <div class="row">
     <div class="col-12 col-sm-6 col-md-3">
-        @if(Auth::user()->hasRole(['institution','meducation']))
+        @if(Auth::user()->hasRole(['meducation']))
               <div class="info-box">
                 <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-fw fa-graduation-cap"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text" >Instituições</span>
                   <span class="info-box-number">
-                  {{$institutions}}
+                  {{$institutions ?? ''}}
                   </span>
                 </div>
                 <!-- /.info-box-content -->
@@ -28,7 +28,7 @@
                   <span class="info-box-icon bg-success elevation-1"><i class="fas fa-fw fa-user-graduate"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text">Estudantes</span>
-                    <span class="info-box-number">{{$students}}</span>
+                    <span class="info-box-number">{{$students ?? ''}}</span>
                   </div>
                   <!-- /.info-box-content -->
                 </div>

@@ -20,7 +20,7 @@ class AdminController extends Controller
         $districts = District::all()->count();
         $data = [];
 
-        if (Auth::user()->hasRole(['institution','meducation'])) {
+        if (Auth::user()->hasRole(['meducation'])) {
             
             $institutions = Institution::all()->count();
             $teachers = Teacher::all()->count();

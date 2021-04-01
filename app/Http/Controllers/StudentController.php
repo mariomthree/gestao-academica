@@ -12,7 +12,8 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::all();
+        $institution = institution::where('user_id', Auth::user()->id)->first();
+        $students = Student::where('institution_id', $institution->id)->get();
         return view('admin.students.index',[
             'students'=> $students
         ]);
