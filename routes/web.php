@@ -52,5 +52,8 @@ Route::prefix('admin')->middleware([Admin::class])->group(function () {
             'students' => StudentController::class,
             'teachers' => TeacherController::class
         ]);
+
+        Route::get('/institution', [InstitutionController::class, 'institution']);
+
     });
 });

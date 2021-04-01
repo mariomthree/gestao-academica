@@ -46,7 +46,7 @@
                                 <tr>
                                     <th>Nome</th>
                                     <th>Ensino</th>
-                                    <th>Distito</th>
+                                    <th>Distrito</th>
                                     <th>Utilizador</th>
                                     <th>Acção</th>
                                 </tr>

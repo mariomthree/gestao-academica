@@ -33,6 +33,13 @@ class InstitutionController extends Controller
         ]);
     }
 
+    public function institution(){
+        $institution = institution::where('user_id', Auth::user()->id)->first();
+        return view('admin.institutions.institution',
+        ['institution' =>$institution
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
