@@ -95,7 +95,6 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, $id)
     {
-        return $request->all();
         $user = User::findOrFail($id);
 
         $data = $request->except('role_id');
