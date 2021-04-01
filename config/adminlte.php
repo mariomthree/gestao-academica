@@ -316,7 +316,7 @@ return [
         [
             'text'    => 'Instituição de Ensino',
             'icon'    => 'fas fa-fw fa-graduation-cap',
-            'url'  => 'admin/institutions/institution',
+            'url'  => 'admin/institution',
             'permission'  => [
                 'create-student',
                 'edit-student',
