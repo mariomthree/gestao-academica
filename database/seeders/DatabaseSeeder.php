@@ -22,9 +22,7 @@ class DatabaseSeeder extends Seeder
             ProvinceSeeder::class,
             DistrictSeeder::class,
             TeachingSeeder::class,
-            // InstitutionSeeder::class,
-            // StudentSeeder::class,
-            // TeacherSeeder::class
+            InstitutionSeeder::class
         ]);
     }
 }
