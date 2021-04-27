@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Laratrust\Traits\LaratrustUserTrait;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -56,7 +57,7 @@ class User extends Authenticatable
     public function adminlte_image()
     {
         if ($this->photo) 
-            return $this->photo->file;
+            return asset('storage/users/'.$this->photo->file);
         return '/vendor/adminlte/dist/img/user.png';
     }
 

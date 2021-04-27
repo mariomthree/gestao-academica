@@ -2,61 +2,68 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfilePasswordRequest;
+use App\Http\Requests\ProfileRequest;
+use App\Models\Photo;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
 
-    public function index()
+    public function profile()
     {
-       $user = Auth::user(); 
-       $roles = Role::pluck('name','id');
+        $user = Auth::user();
+        $roles = Role::pluck('name', 'id');
 
-       return view('admin.users.profile',[
-           'user' => $user,
-           'roles' => $roles
-       ]); 
+        return view('admin.users.profile', [
+            'user' => $user,
+            'roles' => $roles
+        ]);
     }
 
 
-    public function updatePassword()
-    {
-
-    }
-
-
-    public function updateUser(Request $request, $id)
+    public function profilePasswordUpdate(ProfilePasswordRequest $request, $id)
     {
         $user = User::findOrFail($id);
-
-        $data = $request->except('role_id');
-        $data['password'] = $user->password;
-        $data['photo_id'] = $this->uploadPhotoAndReturnPhotoId($request, $user);
+        $data['password'] = Hash::make($request->new_password);
         $user->update($data);
-       
-        $role = Role::findOrFail($request->role_id);
-        $user->detachRoles($user->roles);
-        $user->attachRole($role);
-
-        return redirect('admin/users')->with('success','Utilizador actualizado.');
+        return redirect('admin/profile')->with('success', 'Palavra-passe actualizada.');
     }
 
-    private function uploadPhotoAndReturnPhotoId(Request $request, User $user = null){
+    public function profileUpdate(ProfileRequest $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $data = $request->all();
+        $data['photo_id'] = $this->uploadPhotoAndReturnPhotoId($request, $user);
+        $user->update($data);
+        return redirect('admin/profile')->with('success', 'Utilizador actualizado.');
+    }
+
+    private function uploadPhotoAndReturnPhotoId(Request $request, User $user = null)
+    {
         $photo_id = $user->photo_id;
         if ($request->file('photo_id')) {
-            $path = $request->file('photo_id')->store('uploads/avatars');
-            if($user->photo_id){
+            
+            $str_path = $request->file('photo_id')->store('public/users');
+            $array_path = explode("/",$str_path);
+            $fileName = $array_path[count($array_path)-1];
+
+            if ($user->photo_id) {
                 $photo = Photo::findOrFail($user->photo_id);
-                $photo->file = $path;
+                Storage::delete($photo->file);
+                $photo->file = $fileName;
                 $photo->save();
-            }else{
-                $photo = Photo::create(['file' => $path]);
+            } else {
+                $photo = Photo::create(['file' => $fileName]);
                 $photo_id = $photo->id;
             }
         }
         return $photo_id;
     }
+
 }

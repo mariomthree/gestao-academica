@@ -30,19 +30,22 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->middleware([Admin::class])->group(function () {
-    
+
     Route::get('/', [AdminController::class], 'index')->name('admin');
-    Route::resource('users', UserController::class);
-    Route::resource('/profile', ProfileController::class);
+
+    Route::get('/profile', [ProfileController::class,'profile']);
+    Route::patch('/profile/{id}/update', [ProfileController::class,'profileUpdate']);
+    Route::patch('/profile/{id}/password', [ProfileController::class,'profilePasswordUpdate']);
 
     Route::middleware(['role:admin'])->group(function () {
         Route::resources([
             'provinces' => ProvinceController::class,
             'districts' => DistrictController::class,
-            'teachings' => TeachingController::class
+            'teachings' => TeachingController::class,
+            'users'     => UserController::class,
         ]);
     });
-    
+
     Route::middleware(['role:meducation'])->group(function () {
         Route::resources([
             'institutions' => InstitutionController::class
