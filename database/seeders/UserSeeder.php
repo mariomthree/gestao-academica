@@ -45,7 +45,6 @@ class UserSeeder extends Seeder
 
         $admin = Role::where('name','admin')->first();
         $meducation = Role::where('name','meducation')->first();
-        $institution = Role::where('name','institution')->first();
 
         $user->attachRole($admin); 
         $user2->attachRole($meducation); 

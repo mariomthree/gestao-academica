@@ -74,6 +74,9 @@
 						</tbody>
 					</table>
 				</div>
+				<div class="card-footer clearfix pagination-sm">
+					{{$teachers->links()}}
+              	</div> 
 			</div>
 		</div>
 

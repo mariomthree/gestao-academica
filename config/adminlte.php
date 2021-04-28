@@ -265,9 +265,9 @@ return [
             ]
         ],
         [
-            'text'    => 'Tipo de Ensino',
-            'icon'    => 'fas fa-fw fa-book',
-            'url'     => 'admin/teachings',
+            'text'    => 'Nível de Academico',
+            'icon'    => 'fas fa-fw fa-university',
+            'url'     => 'admin/internships',
             'permission'  => [
                 'create-teaching',
                 'edit-teaching',
@@ -286,7 +286,7 @@ return [
         ],
         [
             'text'    => 'Distritos',
-            'icon'    => 'fa fa-fw fa-list-ul',
+            'icon'    => 'fa fa-fw fa-list',
             'url'  => 'admin/districts',
             'permission' => [
                 'create-district',

@@ -77,7 +77,7 @@
                             <div class="form-group row">
                                 {!! Form::label('teaching_id','Ensino:',['class'=>'col-sm-3 col-form-label']) !!}
                                 <div class="col-sm-9">
-                                    @foreach($teachings as $teaching)
+                                    @foreach($internships as $teaching)
                                     <div class="form-check">
                                         <input class="form-check-input"  id="{{$teaching->id}}" name="teaching_id[]" type="checkbox" value="{{$teaching->id}}">
                                         <label class="font-weight-normal form-check-label" id="{{$teaching->id}}">{{$teaching->name}}</label>

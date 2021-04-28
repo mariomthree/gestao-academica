@@ -58,8 +58,8 @@
 									<tr>
 										<td>{{$institution->name}}</td>
 										<td>
-                                        @foreach($institution->teachings as $teaching)
-                                            {{$teaching->name}},
+                                        @foreach($institution->internships as $internship)
+                                            {{$internship->name}},
                                         @endforeach
                                         </td>
 										<td>{{$institution->district->name}}</td>
@@ -78,7 +78,10 @@
 						</tbody>
                         </table>
                     </div>
-                </div>         
+                </div> 
+                <div class="card-footer clearfix pagination-sm">
+					{{$institutions->links()}}
+              	</div>     
             </div>
         </div>
 

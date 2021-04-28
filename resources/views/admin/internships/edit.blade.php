@@ -36,7 +36,7 @@
 								</div>
 								<div class="card-body">
 
-									{!! Form::model($teaching, ['method'=>'PATCH','action'=>['App\Http\Controllers\TeachingController@update',$teaching->id], 'id'=>'form']) !!}	
+									{!! Form::model($internship, ['method'=>'PATCH','action'=>['App\Http\Controllers\InternshipsController@update',$internship->id], 'id'=>'form']) !!}	
 										{!! Form::label('name','Nome:') !!}
 										<div class="form-group">
 										{!! Form::text('name', null, [ 'class' => 'form-control ' . ( $errors->has('name') ? ' is-invalid' : '' )]) !!}

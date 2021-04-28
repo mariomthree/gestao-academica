@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ProvinceSeeder::class,
             DistrictSeeder::class,
-            TeachingSeeder::class,
+            InternshipsSeeder::class,
             InstitutionSeeder::class
         ]);
     }

@@ -72,9 +72,9 @@
                             <div class="form-group row">
                                 {!! Form::label('teaching_id','Ensino:',['class'=>'col-sm-3 col-form-label']) !!}
                                 <div class="col-sm-9">
-                                    @foreach($teachings as $teaching)
+                                    @foreach($internships as $teaching)
                                         <div class="form-check">
-                                            @if($institution->teachings->where('name',$teaching->name)->count() > 0)
+                                            @if($institution->internships->where('name',$teaching->name)->count() > 0)
                                             <input checked class="form-check-input"  id="{{$teaching->id}}" name="teaching_id[]" type="checkbox" value="{{$teaching->id}}">
                                             @else
                                             <input disabled class="form-check-input"  id="{{$teaching->id}}" name="teaching_id[]" type="checkbox" value="{{$teaching->id}}">

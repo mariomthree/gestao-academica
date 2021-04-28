@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Teaching;
+use App\Models\Internships;
 use Illuminate\Database\Seeder;
 
-class TeachingSeeder extends Seeder
+class InternshipsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,13 +14,13 @@ class TeachingSeeder extends Seeder
      */
     public function run()
     {
-        $teachings = [
+        $internships = [
             'Ensino Primário',
             'Ensino Secundário',
             'Ensino Pré-universitário'
         ];
 
-        foreach ($teachings as $teaching) 
-            Teaching::create(['name' => $teaching]);
+        foreach ($internships as $internship) 
+            Internships::create(['name' => $internship]);
     }
 }

@@ -91,6 +91,9 @@
 									</tbody>
 								</table>
 							</div>
+							<div class="card-footer clearfix pagination-sm">
+								{{$provinces->links()}}
+							</div>
 						</div>
 					</div>
 

@@ -107,8 +107,8 @@
                   <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-globe-africa"></i></span>
 
                   <div class="info-box-content">
-                    <span class="info-box-text">Tipos de Ensino</span>
-                    <span class="info-box-number">{{$teachings}}</span>
+                    <span class="info-box-text">Nível de Academico</span>
+                    <span class="info-box-number">{{$internships}}</span>
                   </div>
                   <!-- /.info-box-content -->
                 </div>

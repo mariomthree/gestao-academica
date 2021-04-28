@@ -12,7 +12,7 @@ class TeacherController extends Controller
     public function index()
     {
         $institution = institution::where('user_id', Auth::user()->id)->first();
-        $teachers = Teacher::where('institution_id', $institution->id)->get();
+        $teachers = Teacher::where('institution_id', $institution->id)->paginate(10);
         return view('admin.teachers.index',[
             'teachers'=> $teachers
         ]);

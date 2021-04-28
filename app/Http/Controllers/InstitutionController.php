@@ -7,7 +7,7 @@ use App\Http\Requests\InstitutionUpdateRequest;
 use App\Models\District;
 use App\Models\Institution;
 use App\Models\Role;
-use App\Models\Teaching;
+use App\Models\Internships;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +16,7 @@ class InstitutionController extends Controller
 
     public function index()
     {
-        $institutions = Institution::all();
+        $institutions = Institution::paginate(10);
    
         return view('admin.institutions.index',[
             'institutions'=> $institutions
@@ -26,20 +26,20 @@ class InstitutionController extends Controller
     public function create()
     {
         $districts = District::pluck('name','id')->all();
-        $teachings = Teaching::all();
+        $internships = Internships::all();
 
         return view('admin.institutions.create',[
             'districts' => $districts,
-            'teachings' => $teachings
+            'internships' => $internships
         ]);
     }
 
     public function institution(){
         $institution = institution::where('user_id', Auth::user()->id)->first();
-        $teachings = Teaching::all();
+        $internships = Internships::all();
         return view('admin.institutions.institution',[
             'institution' =>$institution,
-            'teachings' =>$teachings
+            'internships' =>$internships
         ]);
     }
 
@@ -68,7 +68,7 @@ class InstitutionController extends Controller
             'user_id' => $user->id
         ]);
 
-        $institution->teachings()->syncWithoutDetaching($request->teaching_id);
+        $institution->internships()->syncWithoutDetaching($request->teaching_id);
         return redirect('admin/institutions')->with('success','Instituição adicionada.');
     }
 
@@ -82,12 +82,12 @@ class InstitutionController extends Controller
     {
         $institution = Institution::findOrFail($id);
         $districts = District::pluck('name','id')->all();
-        $teachings = Teaching::all();
+        $internships = Internships::all();
         
         return view('admin.institutions.edit',[
             'institution'=> $institution,
             'districts'=> $districts,
-            'teachings'=> $teachings
+            'internships'=> $internships
         ]);
     }
 
@@ -118,7 +118,7 @@ class InstitutionController extends Controller
             'user_id' => $institution->user_id
         ]);
 
-        $institution->teachings()->sync($request->teaching_id);
+        $institution->internships()->sync($request->teaching_id);
         return redirect('admin/institutions')->with('success','Instituição  actualizada.');
     }
 
@@ -131,7 +131,7 @@ class InstitutionController extends Controller
     public function destroy($id)
     {
         $institution = Institution::findOrFail($id);
-        $institution->teachings()->detach();
+        $institution->internships()->detach();
         $institution->user->delete();
         $institution->delete();
         return redirect('admin/institutions')->with('success','Instituição removida.');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\District;
 use Illuminate\Http\Request;
 use App\Models\Institution;
+use App\Models\Internships;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Teaching;
@@ -35,14 +36,14 @@ class AdminController extends Controller
 
         }elseif(Auth::user()->hasRole(['admin'])){
 
-            $teachings = Teaching::all()->count();
+            $internships = Internships::all()->count();
             $users = Institution::all()->count();
             $provinces = Teacher::all()->count();
             $districts = District::all()->count();
 
             $data  = [
                 'users' => $users,
-                'teachings' => $teachings,
+                'internships' => $internships,
                 'provinces' => $provinces,
                 'districts' => $districts,
             ];

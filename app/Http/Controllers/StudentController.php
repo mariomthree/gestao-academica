@@ -13,7 +13,7 @@ class StudentController extends Controller
     public function index()
     {
         $institution = institution::where('user_id', Auth::user()->id)->first();
-        $students = Student::where('institution_id', $institution->id)->get();
+        $students = Student::where('institution_id', $institution->id)->paginate(10);
         return view('admin.students.index',[
             'students'=> $students
         ]);

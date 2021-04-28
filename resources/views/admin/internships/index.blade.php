@@ -44,7 +44,7 @@
 					</div>
 					<div class="card-body">
 
-						{!! Form::open(['method'=>'POST','action'=>'App\Http\Controllers\TeachingController@store', 'id'=>'form']) !!}	
+						{!! Form::open(['method'=>'POST','action'=>'App\Http\Controllers\InternshipsController@store', 'id'=>'form']) !!}	
 
 							{!! Form::label('name','Nome:') !!}
 							<div class="form-group">
@@ -77,14 +77,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							@if($teachings)
-								@foreach($teachings as $teaching)
+							@if($internships)
+								@foreach($internships as $internship)
 									<tr>
-										<td>{{$teaching->name}}</td>
+										<td>{{$internship->name}}</td>
 										<td class="text-right py-0 align-middle">
-											{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\TeachingController@destroy',$teaching->id]]) !!}
+											{!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\InternshipsController@destroy',$internship->id]]) !!}
 											<div class="btn-group btn-group-sm">
-												<a href="{{route('teachings.edit',$teaching->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+												<a href="{{route('internships.edit',$internship->id)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
 												<button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
 											</div>
 										{!! Form::close() !!}
@@ -95,6 +95,9 @@
 						</tbody>
 					</table>
 				</div>
+				<div class="card-footer clearfix pagination-sm">
+					{{$internships->links()}}
+              	</div>
 			</div>
 		</div>
 

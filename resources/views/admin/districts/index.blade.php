@@ -77,6 +77,7 @@
 					<div class="card-header">
 						<h3 class="card-title">Todos Distritos</h3>
 					</div>
+		
 					<div class="card-body  table-responsive">
 					<table id="table" class="table table-striped">
 						<thead>
@@ -104,8 +105,13 @@
 								@endforeach
 							@endif
 						</tbody>
+
 					</table>
+
 				</div>
+				<div class="card-footer clearfix pagination-sm">
+					{{$districts->links()}}
+              	</div>
 			</div>
 		</div>
 

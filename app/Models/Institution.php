@@ -17,9 +17,9 @@ class Institution extends Model
       return $this->belongsTo(District::class);
    }
 
-   public function teachings()
+   public function internships()
    {
-      return $this->belongsToMany(Teaching::class);
+      return $this->belongsToMany(Internships::class);
    }
    
    public function students()

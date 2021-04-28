@@ -9,10 +9,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\InstitutionController;
+use App\Http\Controllers\InternshipsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
-use App\Http\Controllers\TeachingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,16 +32,17 @@ Route::get('/', [HomeController::class, 'index']);
 Route::prefix('admin')->middleware([Admin::class])->group(function () {
 
     Route::get('/', [AdminController::class, 'index'])->name('admin');
+    Route::get('/report', [ReportController::class, 'index']);
 
-    Route::get('/profile', [ProfileController::class,'profile']);
-    Route::patch('/profile/{id}/update', [ProfileController::class,'profileUpdate']);
-    Route::patch('/profile/{id}/password', [ProfileController::class,'profilePasswordUpdate']);
+    Route::get('/profile', [ProfileController::class, 'profile']);
+    Route::patch('/profile/{id}/update', [ProfileController::class, 'profileUpdate']);
+    Route::patch('/profile/{id}/password', [ProfileController::class, 'profilePasswordUpdate']);
 
     Route::middleware(['role:admin'])->group(function () {
         Route::resources([
             'provinces' => ProvinceController::class,
             'districts' => DistrictController::class,
-            'teachings' => TeachingController::class,
+            'internships' => InternshipsController::class,
             'users'     => UserController::class,
         ]);
     });
@@ -58,7 +60,4 @@ Route::prefix('admin')->middleware([Admin::class])->group(function () {
         ]);
         Route::get('/institution', [InstitutionController::class, 'institution']);
     });
-
-
-
 });
