@@ -9,12 +9,12 @@
 @section('content_header')
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Tipo de Ensino</h1>
+        <h1 class="m-0 text-dark">Nível Academico</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="/admin">Inicio</a></li>
-        <li class="breadcrumb-item active">Tipo de Ensino</li>
+        <li class="breadcrumb-item active">Nível Academico</li>
         </ol>
     </div><!-- /.col -->
 </div><!-- /.row -->
@@ -40,7 +40,7 @@
 
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Novo Ensino</h3>
+						<h3 class="card-title">Novo Nível</h3>
 					</div>
 					<div class="card-body">
 
@@ -66,7 +66,7 @@
 			<div class="col-sm-12 col-md-7">
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Ensinos</h3>
+						<h3 class="card-title">Níveis</h3>
 					</div>
 					<div class="card-body  table-responsive">
 					<table id="table" class="table table-striped">
