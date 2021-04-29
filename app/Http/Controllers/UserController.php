@@ -29,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::where('name','<>','institution')->get()->pluck('name','id');
+        $roles = Role::where('name','<>','institution')->get()->pluck('display_name','id');
         return view('admin.users.create',['roles'=>$roles]);
     }
 

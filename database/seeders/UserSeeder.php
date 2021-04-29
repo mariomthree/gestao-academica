@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
         ]);
 
         $user2 = User::create([
-            'name'       => 'Direccao M. Educacao',
+            'name'       => 'Ministry Education',
             'email'      => 'meducation@gmail.com',
             'password'   => Hash::make('12345678'),
             'is_active'  => 1, //active
@@ -40,8 +40,8 @@ class UserSeeder extends Seeder
             'updated_at' => now()
         ]);
 
-        $superadministrator = Role::where('name', 'superadministrator')->first();
-        $meducation = Role::where('name', 'education')->first();
+        $superadministrator = Role::where('name', 'superAdministrator')->first();
+        $meducation = Role::where('name', 'ministryEducation')->first();
 
         $user->attachRole($superadministrator);
         $user2->attachRole($meducation);
