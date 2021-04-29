@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Internships;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class InternshipsSeeder extends Seeder
 {
@@ -14,10 +16,14 @@ class InternshipsSeeder extends Seeder
      */
     public function run()
     {
+        $this->command->info('Truncating internships tables');
+        Schema::disableForeignKeyConstraints();
+        DB::table('internships')->truncate();
+
         $internships = [
-            'Ensino Primário',
-            'Ensino Secundário',
-            'Ensino Pré-universitário'
+            'Primário',
+            'Secundário',
+            'Pré-universitário'
         ];
 
         foreach ($internships as $internship) 

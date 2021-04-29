@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\District;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class DistrictSeeder extends Seeder
 {
@@ -14,6 +16,10 @@ class DistrictSeeder extends Seeder
      */
     public function run()
     {
+        $this->command->info('Truncating districts tables');
+        Schema::disableForeignKeyConstraints();
+        DB::table('districts')->truncate();
+
         $districts = [
             'KaMpfumo',
             'Nlhamankulu',

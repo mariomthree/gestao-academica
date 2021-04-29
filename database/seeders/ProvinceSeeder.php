@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Province;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class ProvinceSeeder extends Seeder
 {
@@ -14,6 +16,10 @@ class ProvinceSeeder extends Seeder
      */
     public function run()
     {
+        $this->command->info('Truncating provinces tables');
+        Schema::disableForeignKeyConstraints();
+        DB::table('provinces')->truncate();
+
         $provinces = [
             'Maputo Cidade',
             'Maputo',

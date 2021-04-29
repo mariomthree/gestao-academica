@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Institution;
-use App\Models\Province;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,13 +14,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            RoleSeeder::class,
-            PermissionSeeder::class,
+            LaratrustSeeder::class,
             UserSeeder::class,
             ProvinceSeeder::class,
             DistrictSeeder::class,
-            InternshipsSeeder::class,
-            InstitutionSeeder::class
+            InternshipsSeeder::class
         ]);
     }
 }

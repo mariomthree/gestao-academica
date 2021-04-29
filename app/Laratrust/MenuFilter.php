@@ -9,7 +9,6 @@ class MenuFilter implements FilterInterface
 {
     public function transform($item)
     {
-
         if (isset($item['permission']) && !LaratrustFacade::isAbleTo($item['permission'])) {
             $item['restricted'] = true;
         }

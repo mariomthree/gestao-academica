@@ -239,19 +239,20 @@ return [
             'text'    => 'Instituições de Ensino',
             'icon'    => 'fas fa-fw fa-graduation-cap',
             'submenu' => [
-                    [
-                        'text' => 'Todas Instituições',
-                        'url'  => 'admin/institutions'
-                    ],
-                    [
-                        'text'  => 'Adicionar Nova',
-                        'url'  => 'admin/institutions/create'
-                    ]
+                [
+                    'text' => 'Todas Instituições',
+                    'url'  => 'admin/institutions'
+                ],
+                [
+                    'text'  => 'Adicionar Nova',
+                    'url'  => 'admin/institutions/create'
+                ]
             ],
             'permission'  => [
-                'create-ei',
-                'edit-ei',
-                'delete-ei'
+                'institutions-create',
+                'institutions-read',
+                'institutions-update',
+                'institutions-delete',
             ]
         ],
         [
@@ -259,9 +260,7 @@ return [
             'icon'    => 'fas fa-fw fa-chart-pie',
             'url'     => 'admin/report',
             'permission'  => [
-                'create-ei',
-                'edit-ei',
-                'delete-ei'
+                'report-read',
             ]
         ],
         [
@@ -269,48 +268,53 @@ return [
             'icon'    => 'fas fa-fw fa-university',
             'url'     => 'admin/internships',
             'permission'  => [
-                'create-teaching',
-                'edit-teaching',
-                'delete-teaching'
+                'internships-create',
+                'internships-read',
+                'internships-update',
+                'internships-delete',
             ]
+
         ],
         [
             'text'    => 'Provincias',
             'icon'    => 'fa fa-fw fa-list',
             'url'     => 'admin/provinces',
             'permission'  => [
-                'create-province',
-                'edit-province',
-                'delete-province'
+                'provinces-create',
+                'provinces-read',
+                'provinces-update',
+                'provinces-delete',
             ]
         ],
         [
             'text'    => 'Distritos',
             'icon'    => 'fa fa-fw fa-list',
             'url'  => 'admin/districts',
-            'permission' => [
-                'create-district',
-                'edit-district',
-                'delete-district'
+            'permission'  => [
+                'districts-create',
+                'districts-read',
+                'districts-update',
+                'districts-delete',
             ]
         ],
         [
             'text'    => 'Utilizadores',
             'icon'    => 'fas fa-fw fa-users',
             'submenu' => [
-                    [
-                        'text' => 'Todos Utilizadores',
-                        'url'  => 'admin/users'
-                    ],
-                    [
-                        'text'  => 'Adicionar Novo',
-                        'url'  => 'admin/users/create'
-                    ]
+                [
+                    'text' => 'Todos Utilizadores',
+                    'url'  => 'admin/users'
+                ],
+                [
+                    'text'  => 'Adicionar Novo',
+                    'url'  => 'admin/users/create'
+                ]
             ],
             'permission'  => [
-                'create-user',
-                'edit-user',
-                'delete-user'
+                'users-create',
+                'users-read',
+                'users-update',
+                'users-delete',
             ]
         ],
         [
@@ -318,50 +322,47 @@ return [
             'icon'    => 'fas fa-fw fa-graduation-cap',
             'url'  => 'admin/institution',
             'permission'  => [
-                'create-student',
-                'edit-student',
-                'delete-student',
-                'create-teacher',
-                'edit-teacher',
-                'delete-teacher'
+                'institution-read',
             ]
         ],
         [
             'text'    => 'Estudantes',
             'icon'    => 'fas fa-fw fa-user-graduate',
             'submenu' => [
-                    [
-                        'text' => 'Todos Estudantes',
-                        'url'  => 'admin/students'
-                    ],
-                    [
-                        'text'  => 'Adicionar Novo',
-                        'url'  => 'admin/students/create'
-                    ]
+                [
+                    'text' => 'Todos Estudantes',
+                    'url'  => 'admin/students'
+                ],
+                [
+                    'text'  => 'Adicionar Novo',
+                    'url'  => 'admin/students/create'
+                ]
             ],
             'permission'  => [
-                'create-student',
-                'edit-student',
-                'delete-student'
+                'students-create',
+                'students-read',
+                'students-update',
+                'students-delete',
             ]
         ],
         [
             'text'    => 'Professores',
             'icon'    => 'fas fa-fw fa-chalkboard-teacher',
             'submenu' => [
-                    [
-                        'text' => 'Todos Professores',
-                        'url'  => 'admin/teachers'
-                    ],
-                    [
-                        'text'  => 'Adicionar Novo',
-                        'url'  => 'admin/teachers/create'
-                    ]
+                [
+                    'text' => 'Todos Professores',
+                    'url'  => 'admin/teachers'
+                ],
+                [
+                    'text'  => 'Adicionar Novo',
+                    'url'  => 'admin/teachers/create'
+                ]
             ],
             'permission'  => [
-                'create-teacher',
-                'edit-teacher',
-                'delete-teacher'
+                'teachers-create',
+                'teachers-read',
+                'teachers-update',
+                'teachers-delete',
             ]
         ]
     ],
