@@ -12,14 +12,14 @@ return [
     'truncate_tables' => true,
 
     'roles_structure' => [
-        'superAdministrator' => [
+        'super_administrator' => [
             'users' => 'c,r,u,d',
             'profile' => 'r,u',
             'provinces' => 'c,r,u,d',
             'districts' => 'c,r,u,d',
             'internships' => 'c,r,u,d'
         ],
-        'ministryEducation' => [
+        'ministry_education' => [
             'profile' => 'r,u',
             'institutions' => 'c,r,u,d',
             'report' => 'r'

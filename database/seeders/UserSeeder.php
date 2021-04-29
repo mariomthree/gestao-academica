@@ -40,8 +40,8 @@ class UserSeeder extends Seeder
             'updated_at' => now()
         ]);
 
-        $superadministrator = Role::where('name', 'superAdministrator')->first();
-        $meducation = Role::where('name', 'ministryEducation')->first();
+        $superadministrator = Role::where('name', 'super_administrator')->first();
+        $meducation = Role::where('name', 'ministry_education')->first();
 
         $user->attachRole($superadministrator);
         $user2->attachRole($meducation);

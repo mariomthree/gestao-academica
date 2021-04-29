@@ -38,7 +38,7 @@ Route::prefix('admin')->middleware([Admin::class])->group(function () {
     Route::patch('/profile/{id}/update', [ProfileController::class, 'profileUpdate']);
     Route::patch('/profile/{id}/password', [ProfileController::class, 'profilePasswordUpdate']);
 
-    Route::middleware(['role:superAdministrator'])->group(function () {
+    Route::middleware(['role:super_administrator'])->group(function () {
         Route::resources([
             'provinces' => ProvinceController::class,
             'districts' => DistrictController::class,
@@ -47,7 +47,7 @@ Route::prefix('admin')->middleware([Admin::class])->group(function () {
         ]);
     });
 
-    Route::middleware(['role:ministryEducation'])->group(function () {
+    Route::middleware(['role:ministry_education'])->group(function () {
         Route::resources([
             'institutions' => InstitutionController::class
         ]);
