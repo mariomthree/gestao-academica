@@ -16,7 +16,7 @@ class InternshipsSeeder extends Seeder
      */
     public function run()
     {
-        $this->command->info('Truncating internships tables');
+        $this->command->info('Truncating internships table');
         Schema::disableForeignKeyConstraints();
         DB::table('internships')->truncate();
 

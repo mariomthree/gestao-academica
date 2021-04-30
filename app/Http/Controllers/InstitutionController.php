@@ -68,7 +68,7 @@ class InstitutionController extends Controller
             'user_id' => $user->id
         ]);
 
-        $institution->internships()->syncWithoutDetaching($request->teaching_id);
+        $institution->internships()->syncWithoutDetaching($request->internship_id);
         return redirect('admin/institutions')->with('success','Instituição adicionada.');
     }
 
@@ -118,7 +118,7 @@ class InstitutionController extends Controller
             'user_id' => $institution->user_id
         ]);
 
-        $institution->internships()->sync($request->teaching_id);
+        $institution->internships()->sync($request->internship_id);
         return redirect('admin/institutions')->with('success','Instituição  actualizada.');
     }
 

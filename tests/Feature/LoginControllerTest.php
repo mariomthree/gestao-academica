@@ -13,7 +13,7 @@ class LoginControllerTest extends TestCase
     /** 
      * @test 
      */
-    public function login_returns_view()
+    public function returns_login_view()
     {
         $response = $this->get(route('login'));
         $response->assertStatus(200);

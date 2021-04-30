@@ -16,7 +16,7 @@ class ProvinceSeeder extends Seeder
      */
     public function run()
     {
-        $this->command->info('Truncating provinces tables');
+        $this->command->info('Truncating provinces table');
         Schema::disableForeignKeyConstraints();
         DB::table('provinces')->truncate();
 

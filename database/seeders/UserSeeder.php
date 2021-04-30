@@ -18,32 +18,20 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $this->command->info('Truncating User tables');
+        $this->command->info('Truncating User table');
         Schema::disableForeignKeyConstraints();
         DB::table('users')->truncate();
 
-        $user = User::create([
+        $adminUser = User::create([
             'name'       => 'super administrator',
-            'email'      => 'admin@gmail.com',
+            'email'      => 'admin@system.com',
             'password'   => Hash::make('12345678'),
             'is_active'  => 1, //active
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
-        $user2 = User::create([
-            'name'       => 'Ministry Education',
-            'email'      => 'meducation@gmail.com',
-            'password'   => Hash::make('12345678'),
-            'is_active'  => 1, //active
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        $superadministrator = Role::where('name', 'super_administrator')->first();
-        $meducation = Role::where('name', 'ministry_education')->first();
-
-        $user->attachRole($superadministrator);
-        $user2->attachRole($meducation);
+        $super_administrator = Role::where('name', 'super_administrator')->first();
+        $adminUser->attachRole($super_administrator);
     }
 }

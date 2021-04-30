@@ -70,18 +70,23 @@
 							</div>
 
                             <div class="form-group row">
-                                {!! Form::label('teaching_id','Ensino:',['class'=>'col-sm-3 col-form-label']) !!}
+                                {!! Form::label('internship_id','Niveis:',['class'=>'col-sm-3 col-form-label']) !!}
                                 <div class="col-sm-9">
                                     @foreach($internships as $teaching)
                                         <div class="form-check">
                                             @if($institution->internships->where('name',$teaching->name)->count() > 0)
-                                            <input checked class="form-check-input"  id="{{$teaching->id}}" name="teaching_id[]" type="checkbox" value="{{$teaching->id}}">
+                                            <input checked class="form-check-input"  id="{{$teaching->id}}" name="internship_id[]" type="checkbox" value="{{$teaching->id}}">
                                             @else
-                                            <input disabled class="form-check-input"  id="{{$teaching->id}}" name="teaching_id[]" type="checkbox" value="{{$teaching->id}}">
+                                            <input disabled class="form-check-input"  id="{{$teaching->id}}" name="internship_id[]" type="checkbox" value="{{$teaching->id}}">
                                             @endif
                                             <label class="font-weight-normal form-check-label" id="{{$teaching->id}}">{{$teaching->name}}</label>
                                         </div>
                                     @endforeach
+									@if($errors->has('internship_id'))
+										<div class="invalid-feedback">
+											<strong>{{ $errors->first('internship_id') }}</strong>
+										</div>
+									@endif
                                 </div>
                             </div>
 						</div>

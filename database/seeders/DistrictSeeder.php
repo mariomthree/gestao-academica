@@ -16,7 +16,7 @@ class DistrictSeeder extends Seeder
      */
     public function run()
     {
-        $this->command->info('Truncating districts tables');
+        $this->command->info('Truncating districts table');
         Schema::disableForeignKeyConstraints();
         DB::table('districts')->truncate();
 
